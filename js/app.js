@@ -1,4 +1,6 @@
-// js/app.js
+import UrlItem from './components/url-item.js?mk313V1';
+
+Vue.component('url-item', UrlItem);
 
 new Vue({
     el: '#app',
