@@ -18,14 +18,48 @@
         <h1 class="text-center mb-4 text-primary">CeMIC URLs</h1>
     </a>
     <ul class="list-group">
-        <url-item v-for="item in urls" :item="item" :key="item.url"></url-item>
+        <li v-for="item in urls" class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h4>{{ item.name }}</h4>
+                <a :href="item.url" class="btn btn-primary btn-sm">Visit</a>
+            </div>
+            <div class="input-group">
+                <input v-model="item.url" type="text" class="form-control" readonly>
+                <div class="input-group-append">
+                    <button @click="copyURL(item.url)" class="btn btn-outline-secondary"><i class="fas fa-copy"></i></button>
+                </div>
+            </div>
+        </li>
     </ul>
 </div>
 
 <!-- Vue.js -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-<!-- Custom Scripts -->
-<script type="module" src="/js/app.js?mk313V1"></script>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            urls: [
+                { url: "http://cemicuat.mk313.com/", name: "UAT APP" },
+                { url: "http://cemicuatapi.mk313.com/", name: "UAT API" },
+                { url: "http://cemicqa.mk313.com/", name: "QA APP" },
+                { url: "http://cemicqaapi.mk313.com/", name: "QA API" }
+            ]
+        },
+        methods: {
+            copyURL(url) {
+                const el = document.createElement('textarea');
+                el.value = url;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+                alert('URL copied to clipboard!');
+            }
+        }
+    });
+</script>
 
 <!-- jQuery, Popper.js, Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
