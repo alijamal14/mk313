@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+
+
+
+
 function App() {
-    const [urls, setUrls] = useState([
+    const [urls] = useState([
         { url: "http://cemicuat.mk313.com/", name: "UAT APP" },
         { url: "http://cemicuatapi.mk313.com/", name: "UAT API" },
         { url: "http://cemicqa.mk313.com/", name: "QA APP" },
@@ -20,7 +26,7 @@ function App() {
         alert('URL copied to clipboard!');
     };
 
-    return (
+    return (    
         <div className="container mt-5">
             <a href="http://cemic.mk313.com/" className="text-decoration-none">
                 <h1 className="text-center mb-4 text-primary">CeMIC URLs</h1>
@@ -36,7 +42,7 @@ function App() {
                             <input value={item.url} type="text" className="form-control" readOnly />
                             <div className="input-group-append">
                                 <button onClick={() => copyURL(item.url)} className="btn btn-outline-secondary">
-                                    <i className="fas fa-copy"></i>
+                                    <FontAwesomeIcon icon={faCopy} />
                                 </button>
                             </div>
                         </div>
