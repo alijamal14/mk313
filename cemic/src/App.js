@@ -10,10 +10,10 @@ import { faCopy, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
     const [urls] = useState([
-        { url: "http://cemicuat.mk313.com/", name: "UAT APP" },
-        { url: "http://cemicuatapi.mk313.com/", name: "UAT API" },
-        { url: "http://cemicqa.mk313.com/", name: "QA APP" },
-        { url: "http://cemicqaapi.mk313.com/", name: "QA API" }
+        { url: "https://cemicuat.mk313.com", name: "UAT APP" },
+        { url: "https://cemicuatapi.mk313.com", name: "UAT API" },
+        { url: "https://cemicqa.mk313.com", name: "QA APP" },
+        { url: "https://cemicqaapi.mk313.com", name: "QA API" }
     ]);
 
     const copyURL = (url) => {
