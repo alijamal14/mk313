@@ -1,54 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
-
-
-
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
-    const [urls] = useState([
-        { url: "https://cemicuat.mk313.com", name: "UAT APP" },
-        { url: "https://cemicuatapi.mk313.com", name: "UAT API" },
-        { url: "https://cemicqa.mk313.com", name: "QA APP" },
-        { url: "https://cemicqaapi.mk313.com", name: "QA API" }
-    ]);
+    const [todos, setTodos] = useState([]);
+    const [input, setInput] = useState('');
+    const inputRef = useRef(null);
 
-    const copyURL = (url) => {
-        const el = document.createElement('textarea');
-        el.value = url;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-        alert('URL copied to clipboard!');
+    const addTodo = () => {
+        if (input.trim() !== '') {
+            setTodos(prevTodos => [...prevTodos, input.trim()]);
+            setInput('');
+        }
     };
 
-    return (    
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            addTodo();
+        }
+    };
+
+    const removeTodo = (indexToRemove) => {
+        setTodos(prevTodos => prevTodos.filter((_, index) => index !== indexToRemove));
+    };
+
+    return (
         <div className="container mt-5">
-            <a href="http://cemic.mk313.com/" className="text-decoration-none">
-                <h1 className="text-center mb-4 text-primary">CeMIC URLs</h1>
-            </a>
-            <ul className="list-group">
-                {urls.map(item => (
-                    <li key={item.url} className="list-group-item">
-                        <div className="d-flex justify-content-between align-items-center mb-2">
-                            <h4>{item.name}</h4>
-                            <a href={item.url} className="btn btn-primary btn-sm">Visit</a>
-                        </div>
-                        <div className="input-group">
-                            <input value={item.url} type="text" className="form-control" readOnly />
-                            <div className="input-group-append">
-                                <button onClick={() => copyURL(item.url)} className="btn btn-outline-secondary">
-                                    <FontAwesomeIcon icon={faCopy} />
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+            <div className="d-flex flex-column justify-content-center align-items-center mb-4">
+                <h1>
+                    <a href="http://mk313.com/" className="text-decoration-none" target="_blank" rel="noopener noreferrer">
+                        <span className="text-primary">MK313</span>
+                    </a>
+                </h1>
+                <a href="http://cemic.mk313.com/" className="text-decoration-none mt-2" target="_blank" rel="noopener noreferrer">
+                    <span className="text-primary">Link to: CeMIC URLs</span> <FontAwesomeIcon icon={faExternalLinkAlt} />
+                </a>
+            </div>
+
+            <h2 className="mt-4 mb-2">To-Do List</h2>
+            <div className="mb-4">
+                <input
+                    ref={inputRef}
+                    value={input}
+                    onChange={e => setInput(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter to-do item..."
+                />
+                <button className="btn btn-primary mt-2" onClick={addTodo}>
+                    Add To-Do
+                </button>
+            </div>
+
+            {todos.map((todo, index) => (
+                <div key={index} className="mb-2">
+                    <div className="d-flex justify-content-between align-items-center">
+                        <span>{todo}</span>
+                        <button className="btn btn-outline-danger btn-sm" onClick={() => removeTodo(index)}>
+                            <FontAwesomeIcon icon={faTrash} />
+                        </button>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }
