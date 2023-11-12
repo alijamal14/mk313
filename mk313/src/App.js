@@ -31,7 +31,7 @@ function App() {
         <div className="container mt-5">
             <div className="d-flex flex-column justify-content-center align-items-center mb-4">
                 <h1>
-                    <a href="http://mk313.com/" className="text-decoration-none" target="_blank" rel="noopener noreferrer">
+                    <a href="http://mk313.com/" className="text-decoration-none" rel="noopener noreferrer">
                         <span className="text-primary">MK313</span>
                     </a>
                 </h1>
