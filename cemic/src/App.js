@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import { faCopy, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -31,6 +31,9 @@ function App() {
         <div className="container mt-5">
             <a href="http://cemic.mk313.com/" className="text-decoration-none">
                 <h1 className="text-center mb-4 text-primary">CeMIC URLs</h1>
+            </a>
+            <a href="https://stats.uptimerobot.com/697oyuV1v3" className="text-decoration-none mt-2" target="_blank" rel="noopener noreferrer">
+                <span className="text-primary">CeMIC UpTime Monitor</span> <FontAwesomeIcon icon={faExternalLinkAlt} />
             </a>
             <ul className="list-group">
                 {urls.map(item => (
