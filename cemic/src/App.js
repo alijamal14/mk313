@@ -10,6 +10,7 @@ import { faCopy, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
     const [urls] = useState([
+        { url: "https://fpsoraia.smartchecksheets.com", name: "Fpsoraia App" },
         { url: "https://uaru.smartchecksheets.com", name: "UARU APP" },
         { url: "https://cemicuat.mk313.com", name: "UAT APP" },
         { url: "https://cemicuatapi.mk313.com", name: "UAT API" },
