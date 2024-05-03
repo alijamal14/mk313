@@ -9,14 +9,16 @@ import { faCopy, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 function App() {
-    const AppType = { App: 'App', API: 'API' };
+    const AppType = { APP: 'App', API: 'API' };
     const [urls] = useState([
-        { url: "https://fpsoraia.smartchecksheets.com", name: "Fpsoraia", AppType: AppType.App },
-        { url: "https://uaru.smartchecksheets.com", name: "UARU APP", AppType: AppType.App },
-        { url: "https://cemicuat.mk313.com", name: "UAT APP", AppType: AppType.App },
-        { url: "https://cemicuatapi.mk313.com", name: "UAT API", AppType: AppType.App },
-        { url: "https://cemicqa.mk313.com", name: "QA APP", AppType: AppType.App },
-        { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.App }
+        { url: "https://fpsoraia.smartchecksheets.com", name: "Fpsoraia", AppType: AppType.APP },
+        { url: "https://uaru.smartchecksheets.com", name: "UARU APP", AppType: AppType.APP },
+        { url: "https://cemicuat.mk313.com", name: "UAT APP", AppType: AppType.APP },
+        { url: "https://cemicuatapi.mk313.com", name: "UAT API", AppType: AppType.APP },
+        { url: "http://cemicnextv1.mk313.com", name: "CeMIC Next V1 (Tag Discipline) APP", AppType: AppType.APP },
+        { url: "http://cemicnextv1api.mk313.com/", name: "CeMIC Next V1 (Tag Discipline) APP", AppType: AppType.API },
+        { url: "https://cemicqa.mk313.com", name: "QA APP", AppType: AppType.APP },
+        { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.APP }
     ]);
 
     const copyURL = (url) => {

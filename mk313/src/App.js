@@ -35,9 +35,9 @@ function App() {
                         <span className="text-primary">MK313</span>
                     </a>
                 </h1>
-                <a href="http://cemic.mk313.com/" className="text-decoration-none mt-2" target="_blank" rel="noopener noreferrer">
-                    <span className="text-primary">Link to: CeMIC URLs</span> <FontAwesomeIcon icon={faExternalLinkAlt} />
-                </a>
+                {/*<a href="http://cemic.mk313.com/" className="text-decoration-none mt-2" target="_blank" rel="noopener noreferrer">*/}
+                {/*    <span className="text-primary">Link to: CeMIC URLs</span> <FontAwesomeIcon icon={faExternalLinkAlt} />*/}
+                {/*</a>*/}
             </div>
 
             <h2 className="mt-4 mb-2">To-Do List</h2>
