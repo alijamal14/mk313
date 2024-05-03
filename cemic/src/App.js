@@ -9,13 +9,14 @@ import { faCopy, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 function App() {
+    const AppType = { App: 'App', API: 'API' };
     const [urls] = useState([
-        { url: "https://fpsoraia.smartchecksheets.com", name: "Fpsoraia App" },
-        { url: "https://uaru.smartchecksheets.com", name: "UARU APP" },
-        { url: "https://cemicuat.mk313.com", name: "UAT APP" },
-        { url: "https://cemicuatapi.mk313.com", name: "UAT API" },
-        { url: "https://cemicqa.mk313.com", name: "QA APP" },
-        { url: "https://cemicqaapi.mk313.com", name: "QA API" }
+        { url: "https://fpsoraia.smartchecksheets.com", name: "Fpsoraia", AppType: AppType.App },
+        { url: "https://uaru.smartchecksheets.com", name: "UARU APP", AppType: AppType.App },
+        { url: "https://cemicuat.mk313.com", name: "UAT APP", AppType: AppType.App },
+        { url: "https://cemicuatapi.mk313.com", name: "UAT API", AppType: AppType.App },
+        { url: "https://cemicqa.mk313.com", name: "QA APP", AppType: AppType.App },
+        { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.App }
     ]);
 
     const copyURL = (url) => {
