@@ -16,7 +16,7 @@ function App() {
         { url: "https://cemicuat.mk313.com", name: "UAT APP", AppType: AppType.APP },
         { url: "https://cemicuatapi.mk313.com", name: "UAT API", AppType: AppType.APP },
         { url: "https://cemicnextv1.mk313.com", name: "CeMIC Next V1 (Tag Discipline) APP", AppType: AppType.APP },
-        { url: "https://cemicnextv1api.mk313.com", name: "CeMIC Next V1 (Tag Discipline) APP", AppType: AppType.API },
+        { url: "https://cemicnextv1api.mk313.com", name: "CeMIC Next V1 (Tag Discipline) API", AppType: AppType.API },
         { url: "https://cemicqa.mk313.com", name: "QA APP", AppType: AppType.APP },
         { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.APP }
     ]);
