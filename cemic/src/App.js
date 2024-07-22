@@ -43,15 +43,15 @@ const App = () => {
             <a href="https://stats.uptimerobot.com/697oyuV1v3" className="text-decoration-none mt-2" target="_blank" rel="noopener noreferrer">
                 <span className="text-primary">CeMIC UpTime Monitor</span> <FontAwesomeIcon icon={faExternalLinkAlt} />
             </a>
-            <ul className="list-group">
+            <ul className="list-group mt-3">
                 {urls.filter(item => item.AppType === AppType.APP).map(appItem => (
-                    <li key={appItem.url} className="list-group-item">
+                    <li key={appItem.url} className="list-group-item mb-3 p-3 shadow-sm rounded">
                         <div className="d-flex justify-content-between align-items-center mb-2">
                             <h4>{appItem.name} ({appItem.AppType})</h4>
-                            <a href={appItem.url} className="btn btn-primary btn-sm">Visit</a>
+                            <a href={appItem.url} className="btn btn-primary btn-sm visit-btn">Visit</a>
                         </div>
                         <div className="input-group mb-2">
-                            <input value={appItem.url} type="text" className="form-control" readOnly />
+                            <input value={appItem.url} type="text" className="form-control touch-friendly-input" readOnly />
                             <div className="input-group-append">
                                 <button onClick={() => copyURL(appItem.url)} className="btn btn-outline-secondary">
                                     <FontAwesomeIcon icon={faCopy} />
@@ -63,13 +63,13 @@ const App = () => {
                             <FontAwesomeIcon icon={collapsedGroups[appItem.groupId] ? faChevronUp : faChevronDown} />
                         </div>
                         {collapsedGroups[appItem.groupId] && urls.filter(item => item.groupId === appItem.groupId && item.AppType === AppType.API).map(apiItem => (
-                            <div key={apiItem.url} className="list-group-item list-group-item-secondary mt-2">
+                            <div key={apiItem.url} className="list-group-item list-group-item-secondary mt-2 p-3 rounded">
                                 <div className="d-flex justify-content-between align-items-center mb-2">
                                     <h5>{apiItem.name} ({apiItem.AppType})</h5>
-                                    <a href={apiItem.url} className="btn btn-secondary btn-sm">Visit</a>
+                                    <a href={apiItem.url} className="btn btn-secondary btn-sm visit-btn">Visit</a>
                                 </div>
                                 <div className="input-group">
-                                    <input value={apiItem.url} type="text" className="form-control" readOnly />
+                                    <input value={apiItem.url} type="text" className="form-control touch-friendly-input" readOnly />
                                     <div className="input-group-append">
                                         <button onClick={() => copyURL(apiItem.url)} className="btn btn-outline-secondary">
                                             <FontAwesomeIcon icon={faCopy} />
