@@ -1,37 +1,41 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt, faCopy, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+const AppType = {
+    APP: "Application",
+    API: "API"
+};
 
+const urlsData = [
+    { url: "https://fpsoraia.smartchecksheets.com", name: "Fpsoraia", AppType: AppType.APP, groupId: "grp-001" },
+    { url: "https://uaru.smartchecksheets.com", name: "UARU APP", AppType: AppType.APP, groupId: "grp-002" },
+    { url: "https://cemicuat.mk313.com", name: "UAT APP", AppType: AppType.APP, groupId: "grp-003" },
+    { url: "https://cemicuatapi.mk313.com", name: "UAT API", AppType: AppType.API, groupId: "grp-003" },
+    { url: "https://cemicnextv1.mk313.com", name: "CeMIC Next V1 (Tag Discipline) APP", AppType: AppType.APP, groupId: "grp-004" },
+    { url: "https://cemicnextv1api.mk313.com", name: "CeMIC Next V1 (Tag Discipline) API", AppType: AppType.API, groupId: "grp-004" },
+    { url: "https://cemicqa.mk313.com", name: "QA APP", AppType: AppType.APP, groupId: "grp-005" },
+    { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.API, groupId: "grp-005" }
+];
 
+const copyURL = (url) => {
+    navigator.clipboard.writeText(url);
+    alert("URL copied to clipboard");
+};
 
+const App = () => {
+    const [urls] = useState(urlsData);
+    const [collapsedGroups, setCollapsedGroups] = useState({});
 
-function App() {
-    const AppType = { APP: 'App', API: 'API' };
-    const [urls] = useState([
-        { url: "https://fpsoraia.smartchecksheets.com", name: "Fpsoraia", AppType: AppType.APP },
-        { url: "https://uaru.smartchecksheets.com", name: "UARU APP", AppType: AppType.APP },
-        { url: "https://cemicuat.mk313.com", name: "UAT APP", AppType: AppType.APP },
-        { url: "https://cemicuatapi.mk313.com", name: "UAT API", AppType: AppType.APP },
-        { url: "https://cemicnextv1.mk313.com", name: "CeMIC Next V1 (Tag Discipline) APP", AppType: AppType.APP },
-        { url: "https://cemicnextv1api.mk313.com", name: "CeMIC Next V1 (Tag Discipline) API", AppType: AppType.API },
-        { url: "https://cemicqa.mk313.com", name: "QA APP", AppType: AppType.APP },
-        { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.APP }
-    ]);
-
-    const copyURL = (url) => {
-        const el = document.createElement('textarea');
-        el.value = url;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-        alert('URL copied to clipboard!');
+    const toggleGroupCollapse = (groupId) => {
+        setCollapsedGroups(prevState => ({
+            ...prevState,
+            [groupId]: !prevState[groupId]
+        }));
     };
 
-    return (    
+    return (
         <div className="container mt-5">
             <a href="http://cemic.mk313.com/" className="text-decoration-none">
                 <h1 className="text-center mb-4 text-primary">CeMIC URLs</h1>
@@ -40,25 +44,45 @@ function App() {
                 <span className="text-primary">CeMIC UpTime Monitor</span> <FontAwesomeIcon icon={faExternalLinkAlt} />
             </a>
             <ul className="list-group">
-                {urls.map(item => (
-                    <li key={item.url} className="list-group-item">
+                {urls.filter(item => item.AppType === AppType.APP).map(appItem => (
+                    <li key={appItem.url} className="list-group-item">
                         <div className="d-flex justify-content-between align-items-center mb-2">
-                            <h4>{item.name}</h4>
-                            <a href={item.url} className="btn btn-primary btn-sm">Visit</a>
+                            <h4>{appItem.name} ({appItem.AppType})</h4>
+                            <a href={appItem.url} className="btn btn-primary btn-sm">Visit</a>
                         </div>
-                        <div className="input-group">
-                            <input value={item.url} type="text" className="form-control" readOnly />
+                        <div className="input-group mb-2">
+                            <input value={appItem.url} type="text" className="form-control" readOnly />
                             <div className="input-group-append">
-                                <button onClick={() => copyURL(item.url)} className="btn btn-outline-secondary">
+                                <button onClick={() => copyURL(appItem.url)} className="btn btn-outline-secondary">
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
                             </div>
                         </div>
+                        <div className="collapse-btn" onClick={() => toggleGroupCollapse(appItem.groupId)}>
+                            <span>{collapsedGroups[appItem.groupId] ? 'Hide APIs' : 'Show APIs'}</span>
+                            <FontAwesomeIcon icon={collapsedGroups[appItem.groupId] ? faChevronUp : faChevronDown} />
+                        </div>
+                        {collapsedGroups[appItem.groupId] && urls.filter(item => item.groupId === appItem.groupId && item.AppType === AppType.API).map(apiItem => (
+                            <div key={apiItem.url} className="list-group-item list-group-item-secondary mt-2">
+                                <div className="d-flex justify-content-between align-items-center mb-2">
+                                    <h5>{apiItem.name} ({apiItem.AppType})</h5>
+                                    <a href={apiItem.url} className="btn btn-secondary btn-sm">Visit</a>
+                                </div>
+                                <div className="input-group">
+                                    <input value={apiItem.url} type="text" className="form-control" readOnly />
+                                    <div className="input-group-append">
+                                        <button onClick={() => copyURL(apiItem.url)} className="btn btn-outline-secondary">
+                                            <FontAwesomeIcon icon={faCopy} />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </li>
                 ))}
             </ul>
         </div>
     );
-}
+};
 
 export default App;
