@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt, faCopy, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
+import packageJson from '../package.json'; // Import the package.json
 
 const AppType = {
     APP: "Application",
@@ -81,6 +82,9 @@ const App = () => {
                     </li>
                 ))}
             </ul>
+            <footer className="text-center mt-5">
+                <p>Version: {packageJson.version}</p>
+            </footer>
         </div>
     );
 };
