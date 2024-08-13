@@ -12,12 +12,12 @@ const AppType = {
 const urlsData = [
     { url: "https://fpsoraia.smartchecksheets.com", name: "Fpsoraia", AppType: AppType.APP, groupId: "grp-001" },
     { url: "https://uaru.smartchecksheets.com", name: "UARU APP", AppType: AppType.APP, groupId: "grp-002" },
-    { url: "https://cemicuat.mk313.com", name: "UAT APP", AppType: AppType.APP, groupId: "grp-003" },
-    { url: "https://cemicuatapi.mk313.com", name: "UAT API", AppType: AppType.API, groupId: "grp-003" },
-    { url: "https://cemicnextv1.mk313.com", name: "CeMIC Next V1 (Tag Discipline) APP", AppType: AppType.APP, groupId: "grp-004" },
-    { url: "https://cemicnextv1api.mk313.com", name: "CeMIC Next V1 (Tag Discipline) API", AppType: AppType.API, groupId: "grp-004" },
+    { url: "https://uat.smartchecksheets.com/", name: "UAT APP", AppType: AppType.APP, groupId: "grp-003" },
+    { url: "https://uatapi.smartchecksheets.com/", name: "UAT API", AppType: AppType.API, groupId: "grp-003" },
     { url: "https://cemicqa.mk313.com", name: "QA APP", AppType: AppType.APP, groupId: "grp-005" },
-    { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.API, groupId: "grp-005" }
+    { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.API, groupId: "grp-005" },
+    { url: "https://CeMIC_eni_app.mk313.com", name: "QA APP", AppType: AppType.APP, groupId: "grp-005" },
+    { url: "https://CeMIC_eni_app.mk313.com", name: "QA API", AppType: AppType.API, groupId: "grp-005" },
 ];
 
 const copyURL = (url) => {
