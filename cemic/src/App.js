@@ -16,8 +16,8 @@ const urlsData = [
     { url: "https://uatapi.smartchecksheets.com/", name: "UAT API", AppType: AppType.API, groupId: "grp-003" },
     { url: "https://cemicqa.mk313.com", name: "QA APP", AppType: AppType.APP, groupId: "grp-005" },
     { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.API, groupId: "grp-005" },
-    { url: "https://CeMIC_eni_app.mk313.com", name: "QA APP", AppType: AppType.APP, groupId: "grp-005" },
-    { url: "https://CeMIC_eni_app.mk313.com", name: "QA API", AppType: AppType.API, groupId: "grp-005" },
+    { url: "https://CeMIC_eni_app.mk313.com", name: "Eni APP", AppType: AppType.APP, groupId: "grp-005" },
+    { url: "https://CeMIC_eni_app.mk313.com", name: "ENI API", AppType: AppType.API, groupId: "grp-005" },
 ];
 
 const copyURL = (url) => {
