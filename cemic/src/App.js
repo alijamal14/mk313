@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt, faCopy, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
@@ -36,6 +36,34 @@ const App = () => {
         }));
     };
 
+    const highlightElement = () => {
+        // Remove highlight from any previously highlighted elements
+        const previouslyHighlighted = document.querySelector('.highlight');
+        if (previouslyHighlighted) {
+            previouslyHighlighted.classList.remove('highlight');
+        }
+
+        // Highlight the current element
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+            const element = document.getElementById(hash);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                element.classList.add('highlight');
+            }
+        }
+    };
+
+    useEffect(() => {
+        highlightElement(); // Highlight on initial render
+
+        window.addEventListener('hashchange', highlightElement); // Listen for hash changes
+
+        return () => {
+            window.removeEventListener('hashchange', highlightElement); // Cleanup listener on unmount
+        };
+    }, []);
+
     return (
         <div className="container mt-5">
             <a href="http://cemic.mk313.com/" className="text-decoration-none">
@@ -46,7 +74,7 @@ const App = () => {
             </a>
             <ul className="list-group mt-3">
                 {urls.filter(item => item.AppType === AppType.APP).map(appItem => (
-                    <li key={appItem.url} className="list-group-item mb-3 p-3 shadow-sm rounded">
+                    <li id={appItem.url} key={appItem.url} className="list-group-item mb-3 p-3 shadow-sm rounded">
                         <div className="d-flex justify-content-between align-items-center mb-2">
                             <h4>{appItem.name} ({appItem.AppType})</h4>
                             <a href={appItem.url} className="btn btn-primary btn-sm visit-btn">Visit</a>
