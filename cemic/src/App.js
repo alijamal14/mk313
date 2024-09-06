@@ -18,6 +18,8 @@ const urlsData = [
     { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.API, groupId: "grp-005" },
     { url: "https://CeMIC_eni_app.mk313.com", name: "Eni APP", AppType: AppType.APP, groupId: "grp-006" },
     { url: "https://CeMIC_eni_api.mk313.com", name: "ENI API", AppType: AppType.API, groupId: "grp-006" },
+    { url: "https://cemicuat.mk313.com", name: "UARU PreProd APP", AppType: AppType.APP, groupId: "grp-007" },
+    { url: "https://cemicuatapi.mk313.com", name: "UARU PreProd API", AppType: AppType.API, groupId: "grp-007" },
 ];
 
 const copyURL = (url) => {
