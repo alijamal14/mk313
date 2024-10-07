@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt, faCopy, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt, faCopy, faChevronDown, faChevronUp, faBars } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import packageJson from '../package.json'; // Import the package.json
+import Sidebar from './Sidebar'; // Import the Sidebar component
 
 const AppType = {
     APP: "Application",
@@ -30,12 +31,17 @@ const copyURL = (url) => {
 const App = () => {
     const [urls] = useState(urlsData);
     const [collapsedGroups, setCollapsedGroups] = useState({});
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     const toggleGroupCollapse = (groupId) => {
         setCollapsedGroups(prevState => ({
             ...prevState,
             [groupId]: !prevState[groupId]
         }));
+    };
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
     };
 
     const highlightElement = () => {
@@ -67,74 +73,80 @@ const App = () => {
     }, []);
 
     return (
-        <div className="container mt-5">
-            <a href="http://cemic.mk313.com/" className="text-decoration-none">
-                <h1 className="text-center mb-4 text-primary">CeMIC URLs</h1>
-            </a>
-            <a href="https://stats.uptimerobot.com/697oyuV1v3" className="text-decoration-none mt-2" target="_blank" rel="noopener noreferrer">
-                <span className="text-primary">CeMIC UpTime Monitor</span> <FontAwesomeIcon icon={faExternalLinkAlt} />
-            </a>
-            <ul className="list-group mt-3">
-                {urls.filter(item => item.AppType === AppType.APP).map(appItem => (
-                    <li id={appItem.url} key={appItem.url} className="list-group-item mb-3 p-3 shadow-sm rounded">
-                        <div className="d-flex justify-content-between align-items-center mb-2">
-                            <h4>{appItem.name} ({appItem.AppType})</h4>
-                            <a href={appItem.url} className="btn btn-primary btn-sm visit-btn">Visit</a>
-                        </div>
-                        <div className="input-group mb-2">
-                            <input value={appItem.url} type="text" className="form-control touch-friendly-input" readOnly />
-                            <div className="input-group-append">
-                                <button onClick={() => copyURL(appItem.url)} className="btn btn-outline-secondary">
-                                    <FontAwesomeIcon icon={faCopy} />
-                                </button>
+        <div className="container mt-5 d-flex">
+            <button className="sidebar-toggle" onClick={toggleSidebar}>
+                <FontAwesomeIcon icon={faBars} />
+            </button>
+            <Sidebar urls={urls} isOpen={isSidebarOpen} /> {/* Add the Sidebar component */}
+            <div className={`content ml-4 ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
+                <a href="http://cemic.mk313.com/" className="text-decoration-none">
+                    <h1 className="text-center mb-4 text-primary">CeMIC URLs</h1>
+                </a>
+                <a href="https://stats.uptimerobot.com/697oyuV1v3" className="text-decoration-none mt-2" target="_blank" rel="noopener noreferrer">
+                    <span className="text-primary">CeMIC UpTime Monitor</span> <FontAwesomeIcon icon={faExternalLinkAlt} />
+                </a>
+                <ul className="list-group mt-3">
+                    {urls.filter(item => item.AppType === AppType.APP).map(appItem => (
+                        <li id={appItem.url} key={appItem.url} className="list-group-item mb-3 p-3 shadow-sm rounded">
+                            <div className="d-flex justify-content-between align-items-center mb-2">
+                                <h4>{appItem.name} ({appItem.AppType})</h4>
+                                <a href={appItem.url} className="btn btn-primary btn-sm visit-btn">Visit</a>
                             </div>
-                        </div>
-                        {appItem.directIP && (
                             <div className="input-group mb-2">
-                                <input value={appItem.directIP} type="text" className="form-control touch-friendly-input" readOnly />
+                                <input value={appItem.url} type="text" className="form-control touch-friendly-input" readOnly />
                                 <div className="input-group-append">
-                                    <button onClick={() => copyURL(appItem.directIP)} className="btn btn-outline-secondary">
+                                    <button onClick={() => copyURL(appItem.url)} className="btn btn-outline-secondary">
                                         <FontAwesomeIcon icon={faCopy} />
                                     </button>
                                 </div>
                             </div>
-                        )}
-                        <div className="collapse-btn" onClick={() => toggleGroupCollapse(appItem.groupId)}>
-                            <span>{collapsedGroups[appItem.groupId] ? 'Hide APIs' : 'Show APIs'}</span>
-                            <FontAwesomeIcon icon={collapsedGroups[appItem.groupId] ? faChevronUp : faChevronDown} />
-                        </div>
-                        {collapsedGroups[appItem.groupId] && urls.filter(item => item.groupId === appItem.groupId && item.AppType === AppType.API).map(apiItem => (
-                            <div key={apiItem.url} className="list-group-item list-group-item-secondary mt-2 p-3 rounded">
-                                <div className="d-flex justify-content-between align-items-center mb-2">
-                                    <h5>{apiItem.name} ({apiItem.AppType})</h5>
-                                    <a href={apiItem.url} className="btn btn-secondary btn-sm visit-btn">Visit</a>
-                                </div>
-                                <div className="input-group">
-                                    <input value={apiItem.url} type="text" className="form-control touch-friendly-input" readOnly />
+                            {appItem.directIP && (
+                                <div className="input-group mb-2">
+                                    <input value={appItem.directIP} type="text" className="form-control touch-friendly-input" readOnly />
                                     <div className="input-group-append">
-                                        <button onClick={() => copyURL(apiItem.url)} className="btn btn-outline-secondary">
+                                        <button onClick={() => copyURL(appItem.directIP)} className="btn btn-outline-secondary">
                                             <FontAwesomeIcon icon={faCopy} />
                                         </button>
                                     </div>
                                 </div>
-                                {apiItem.directIP && (
-                                    <div className="input-group mt-2">
-                                        <input value={apiItem.directIP} type="text" className="form-control touch-friendly-input" readOnly />
+                            )}
+                            <div className="collapse-btn" onClick={() => toggleGroupCollapse(appItem.groupId)}>
+                                <span>{collapsedGroups[appItem.groupId] ? 'Hide APIs' : 'Show APIs'}</span>
+                                <FontAwesomeIcon icon={collapsedGroups[appItem.groupId] ? faChevronUp : faChevronDown} />
+                            </div>
+                            {collapsedGroups[appItem.groupId] && urls.filter(item => item.groupId === appItem.groupId && item.AppType === AppType.API).map(apiItem => (
+                                <div key={apiItem.url} className="list-group-item list-group-item-secondary mt-2 p-3 rounded">
+                                    <div className="d-flex justify-content-between align-items-center mb-2">
+                                        <h5>{apiItem.name} ({apiItem.AppType})</h5>
+                                        <a href={apiItem.url} className="btn btn-secondary btn-sm visit-btn">Visit</a>
+                                    </div>
+                                    <div className="input-group">
+                                        <input value={apiItem.url} type="text" className="form-control touch-friendly-input" readOnly />
                                         <div className="input-group-append">
-                                            <button onClick={() => copyURL(apiItem.directIP)} className="btn btn-outline-secondary">
+                                            <button onClick={() => copyURL(apiItem.url)} className="btn btn-outline-secondary">
                                                 <FontAwesomeIcon icon={faCopy} />
                                             </button>
                                         </div>
                                     </div>
-                                )}
-                            </div>
-                        ))}
-                    </li>
-                ))}
-            </ul>
-            <footer className="text-center mt-5">
-                <p>Version: {packageJson.version}</p>
-            </footer>
+                                    {apiItem.directIP && (
+                                        <div className="input-group mt-2">
+                                            <input value={apiItem.directIP} type="text" className="form-control touch-friendly-input" readOnly />
+                                            <div className="input-group-append">
+                                                <button onClick={() => copyURL(apiItem.directIP)} className="btn btn-outline-secondary">
+                                                    <FontAwesomeIcon icon={faCopy} />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </li>
+                    ))}
+                </ul>
+                <footer className="text-center mt-5">
+                    <p>Version: {packageJson.version}</p>
+                </footer>
+            </div>
         </div>
     );
 };
