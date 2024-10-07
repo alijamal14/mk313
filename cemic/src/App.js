@@ -14,8 +14,8 @@ const urlsData = [
     { url: "https://uaru.smartchecksheets.com", name: "UARU APP", AppType: AppType.APP, groupId: "grp-002" },
     { url: "https://uat.smartchecksheets.com/", name: "UAT APP", AppType: AppType.APP, groupId: "grp-003" },
     { url: "https://uatapi.smartchecksheets.com/", name: "UAT API", AppType: AppType.API, groupId: "grp-003" },
-    { url: "https://cemicqa.mk313.com", name: "QA APP", AppType: AppType.APP, groupId: "grp-005" },
-    { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.API, groupId: "grp-005" },
+    { url: "https://cemicqa.mk313.com", name: "QA APP", AppType: AppType.APP, groupId: "grp-005", directIP: "http://182.180.62.223:3004/" },
+    { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.API, groupId: "grp-005", directIP: "http://182.180.62.223:3003/" },
     { url: "https://CeMIC_eni_app.mk313.com", name: "Eni APP", AppType: AppType.APP, groupId: "grp-006" },
     { url: "https://CeMIC_eni_api.mk313.com", name: "ENI API", AppType: AppType.API, groupId: "grp-006" },
     { url: "https://cemicuat.mk313.com", name: "UARU PreProd APP", AppType: AppType.APP, groupId: "grp-007" },
@@ -89,6 +89,16 @@ const App = () => {
                                 </button>
                             </div>
                         </div>
+                        {appItem.directIP && (
+                            <div className="input-group mb-2">
+                                <input value={appItem.directIP} type="text" className="form-control touch-friendly-input" readOnly />
+                                <div className="input-group-append">
+                                    <button onClick={() => copyURL(appItem.directIP)} className="btn btn-outline-secondary">
+                                        <FontAwesomeIcon icon={faCopy} />
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                         <div className="collapse-btn" onClick={() => toggleGroupCollapse(appItem.groupId)}>
                             <span>{collapsedGroups[appItem.groupId] ? 'Hide APIs' : 'Show APIs'}</span>
                             <FontAwesomeIcon icon={collapsedGroups[appItem.groupId] ? faChevronUp : faChevronDown} />
@@ -107,6 +117,16 @@ const App = () => {
                                         </button>
                                     </div>
                                 </div>
+                                {apiItem.directIP && (
+                                    <div className="input-group mt-2">
+                                        <input value={apiItem.directIP} type="text" className="form-control touch-friendly-input" readOnly />
+                                        <div className="input-group-append">
+                                            <button onClick={() => copyURL(apiItem.directIP)} className="btn btn-outline-secondary">
+                                                <FontAwesomeIcon icon={faCopy} />
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </li>
