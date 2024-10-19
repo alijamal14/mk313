@@ -88,3 +88,13 @@ pm2 save
 - `DELETE /api/todos/:id` - Delete a todo by its ID
 
 For detailed examples of how to interact with these API endpoints, refer to the code in `server.js`.
+
+## Application Request Routing (ARR)
+
+To further optimize your Node.js deployment, you can use IIS with Application Request Routing (ARR) to route traffic to your server. 
+
+For a step-by-step guide, you can follow this video tutorial:
+[How to set up ARR with Node.js](https://www.youtube.com/watch?v=MoY4koskDoE&ab_channel=TutorialPoint).
+
+ARR allows you to balance traffic, manage multiple instances, and handle load distribution effectively.
+
