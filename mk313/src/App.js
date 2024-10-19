@@ -19,7 +19,7 @@ function App() {
     // Function to check if the server is online
     const isServerOnline = async () => {
         try {
-            const response = await fetch('https://your-server.com/api/todos', { method: 'HEAD' });
+            const response = await fetch('http://localhost:3001/api/todos', { method: 'HEAD' });
             return response.ok;
         } catch (error) {
             console.error('Server is offline:', error);
@@ -42,7 +42,7 @@ function App() {
                 if (serverOnline) {
                     try {
                         // Fetch todos from server and update local database
-                        const response = await fetch('https://your-server.com/api/todos');
+                        const response = await fetch('http://localhost:3001/api/todos');
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
                         }
@@ -83,7 +83,7 @@ function App() {
             if (navigator.onLine) {
                 const serverOnline = await isServerOnline();
                 if (serverOnline) {
-                    await fetch('https://your-server.com/api/todos', {
+                    await fetch('http://localhost:3001/api/todos', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -103,7 +103,7 @@ function App() {
         if (navigator.onLine) {
             const serverOnline = await isServerOnline();
             if (serverOnline) {
-                await fetch(`https://your-server.com/api/todos/${idToRemove}`, {
+                await fetch(`http://localhost:3001/api/todos/${idToRemove}`, {
                     method: 'DELETE'
                 });
             }
