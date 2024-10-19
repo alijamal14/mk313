@@ -10,33 +10,52 @@ This is a simple to-do list server application built with Node.js, Express, and 
 
 ## Getting Started
 
-### Running the Server as a Developer
+### Running the Server in Development Mode
 
 1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/yourusername/mk313-server.git
-    cd mk313-server
-    ```
+   Clone the repository to your local machine using the following command:
+   ```bash
+   git clone https://github.com/yourusername/mk313-server.git
+   cd mk313-server
+   ```
+   This will download the project files to a folder named `mk313-server` and navigate into it.
+
 2. **Install dependencies**:
-    ```bash
-    npm install
-    ```
+   Install the required dependencies using npm:
+   ```bash
+   npm install
+   ```
+   This command installs all the necessary dependencies defined in the `package.json` file.
+
 3. **Start MongoDB**:
-    Make sure MongoDB is running. You can start it using the following command:
-    ```bash
-    mongod
-    ```
+   Make sure MongoDB is running on your machine. You can start it using the following command:
+   ```bash
+   mongod
+   ```
+   This will start the MongoDB server. If you're unsure how to check whether MongoDB is running, you can verify using `mongo` command or by checking your service manager.
+
 4. **Run the server**:
-    ```bash
-    node server.js
-    ```
-    The server will start on `http://localhost:3001`.
+   Start the Node.js server using the following command:
+   ```bash
+   node server.js
+   ```
+   The server will start on `http://localhost:3001`. You can now use this address to interact with the server locally.
 
 ### API Endpoints
 
 - `GET /api/todos`: Fetch all to-do items.
-- `POST /api/todos`: Add a new to-do item.
-- `DELETE /api/todos/:id`: Delete a to-do item by ID.
+- `POST /api/todos`: Add a new to-do item. The request body should contain the new item's details in JSON format.
+- `DELETE /api/todos/:id`: Delete a to-do item by ID. Ensure the ID in the request URL matches the item's ID.
+
+Example for adding a new todo using curl:
+```bash
+curl -X POST http://localhost:3001/api/todos -H "Content-Type: application/json" -d '{"task": "New Task"}'
+```
+
+### Common Errors and Troubleshooting
+
+- **MongoDB connection issues**: Ensure MongoDB is running by checking your service manager or running `mongo` in your terminal to confirm connection.
+- **Port conflicts**: If you encounter issues with port `3001`, you can change the port in `server.js` by modifying the `port` variable.
 
 ## Deploying to IIS
 
