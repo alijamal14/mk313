@@ -1,104 +1,90 @@
 
-# mk313-server
+# mk313 Server
 
-This is a simple to-do list server application built with Node.js, Express, and MongoDB.
+This is a simple Express.js server for managing Todo items.
 
 ## Prerequisites
 
-- Node.js and npm installed
-- MongoDB installed and running
+- Node.js installed
+- MongoDB running locally or remotely
+- PM2 installed globally for process management
 
-## Getting Started
+## Installation
 
-### Running the Server in Development Mode
-
-1. **Clone the repository**:
-   Clone the repository to your local machine using the following command:
+1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/mk313-server.git
-   cd mk313-server
+   git clone <repository-url>
+   cd <repository-folder>
    ```
-   This will download the project files to a folder named `mk313-server` and navigate into it.
 
-2. **Install dependencies**:
-   Install the required dependencies using npm:
+2. Install the required dependencies:
    ```bash
    npm install
    ```
-   This command installs all the necessary dependencies defined in the `package.json` file.
 
-3. **Start MongoDB**:
-   Make sure MongoDB is running on your machine. You can start it using the following command:
-   ```bash
-   mongod
-   ```
-   This will start the MongoDB server. If you're unsure how to check whether MongoDB is running, you can verify using `mongo` command or by checking your service manager.
+3. Ensure MongoDB is running. You can update the MongoDB connection string in `server.js` if needed.
 
-4. **Run the server**:
-   Start the Node.js server using the following command:
-   ```bash
-   node server.js
-   ```
-   The server will start on `http://localhost:3001`. You can now use this address to interact with the server locally.
+## Running the Application
 
-### API Endpoints
+### Development
 
-- `GET /api/todos`: Fetch all to-do items.
-- `POST /api/todos`: Add a new to-do item. The request body should contain the new item's details in JSON format.
-- `DELETE /api/todos/:id`: Delete a to-do item by ID. Ensure the ID in the request URL matches the item's ID.
-
-Example for adding a new todo using curl:
+To start the server in development mode, simply run:
 ```bash
-curl -X POST http://localhost:3001/api/todos -H "Content-Type: application/json" -d '{"task": "New Task"}'
+node server.js
 ```
 
-### Common Errors and Troubleshooting
+The server will start at `http://localhost:3010`.
 
-- **MongoDB connection issues**: Ensure MongoDB is running by checking your service manager or running `mongo` in your terminal to confirm connection.
-- **Port conflicts**: If you encounter issues with port `3001`, you can change the port in `server.js` by modifying the `port` variable.
+### Production with PM2
 
-## Deploying to IIS
+For production, use [PM2](https://pm2.keymetrics.io/) to manage the application. PM2 allows you to easily manage your Node.js application with features like load balancing and automatic restarts if the application crashes.
 
-To deploy the Node.js application to IIS, follow these steps:
+#### Install PM2:
+If you haven't installed PM2 globally yet, you can do so with:
+```bash
+npm install pm2 -g
+```
 
-1. **Install IIS and URL Rewrite Module**:
-    - Open the Control Panel and go to "Programs" > "Programs and Features" > "Turn Windows features on or off".
-    - Check "Internet Information Services" and click "OK".
-    - Download and install the [URL Rewrite Module](https://www.iis.net/downloads/microsoft/url-rewrite).
+#### Start the server with PM2:
+```bash
+pm2 start server.js --name mk313-server
+```
 
-2. **Install `iisnode`**:
-    - Download and install [iisnode](https://github.com/tjanczuk/iisnode).
+This command starts your application and assigns it the name `mk313-server`.
 
-3. **Configure IIS**:
-    - Open IIS Manager.
-    - Right-click on "Sites" and select "Add Website".
-    - Set the "Site name" to `mk313-server`, "Physical path" to the directory where your project is located, and "Port" to `80` (or any other port you prefer).
-    - Click "OK".
+#### Useful PM2 Commands:
+- View running processes:
+  ```bash
+  pm2 list
+  ```
+- View detailed logs:
+  ```bash
+  pm2 logs mk313-server
+  ```
+- Restart the server:
+  ```bash
+  pm2 restart mk313-server
+  ```
+- Stop the server:
+  ```bash
+  pm2 stop mk313-server
+  ```
+- Delete the server from PM2:
+  ```bash
+  pm2 delete mk313-server
+  ```
 
-4. **Configure `web.config`**:
-    Create a `web.config` file in the root of your project directory with the following content:
-    ```xml
-    <configuration>
-        <system.webServer>
-            <handlers>
-                <add name="iisnode" path="server.js" verb="*" modules="iisnode" />
-            </handlers>
-            <rewrite>
-                <rules>
-                    <rule name="DynamicContent">
-                        <match url="/*" />
-                        <action type="Rewrite" url="server.js" />
-                    </rule>
-                </rules>
-            </rewrite>
-        </system.webServer>
-    </configuration>
-    ```
+#### Auto-start on server reboot:
+To ensure the application starts automatically after a system reboot, run:
+```bash
+pm2 startup
+pm2 save
+```
 
-5. **Start the Application**:
-    - Open a browser and navigate to `http://localhost` (or the port you configured).
-    - Your Node.js application should be running on IIS.
+## API Endpoints
 
-## License
+- `GET /api/todos` - Retrieve all todos
+- `POST /api/todos` - Add a new todo
+- `DELETE /api/todos/:id` - Delete a todo by its ID
 
-This project is licensed under the MIT License.
+For detailed examples of how to interact with these API endpoints, refer to the code in `server.js`.

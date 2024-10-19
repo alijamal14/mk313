@@ -4,7 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
-const port = 3001;
+const port = 3010; // Change the port if necessary
 
 // Middleware
 app.use(bodyParser.json());
@@ -22,6 +22,11 @@ const todoSchema = new mongoose.Schema({
 });
 
 const Todo = mongoose.model('Todo', todoSchema);
+
+// Root path to confirm the app is working
+app.get('/', (req, res) => {
+    res.send('mk313 server is working fine!');
+});
 
 // Get all todos
 app.get('/api/todos', async (req, res) => {
