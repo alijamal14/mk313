@@ -8,7 +8,7 @@ import Dexie from 'dexie';
 // Initialize Dexie database
 const db = new Dexie('TodoDatabase');
 db.version(1).stores({
-    todos: '++id, text'
+    todos: '_id, text, synced' // Add synced flag for two-way sync
 });
 
 function App() {
@@ -16,10 +16,9 @@ function App() {
     const [input, setInput] = useState('');
     const inputRef = useRef(null);
 
-    // Function to check if the server is online
     const isServerOnline = async () => {
         try {
-            const response = await fetch('https://mk313-server.mk313.com/api/todos', { method: 'HEAD' });
+            const response = await fetch('http://localhost:3010/api/todos', { method: 'HEAD' });
             return response.ok;
         } catch (error) {
             console.error('Server is offline:', error);
@@ -27,86 +26,108 @@ function App() {
         }
     };
 
-    useEffect(() => {
-        // Load todos from IndexedDB on component mount
-        const loadTodos = async () => {
-            const allTodos = await db.todos.toArray();
-            setTodos(allTodos);
-        };
-        loadTodos();
+    const loadTodosFromLocal = async () => {
+        const allTodos = await db.todos.toArray();
+        setTodos(allTodos);
+    };
 
-        // Sync with server when online
-        const syncWithServer = async () => {
-            if (navigator.onLine) {
-                const serverOnline = await isServerOnline();
-                if (serverOnline) {
-                    try {
-                        // Fetch todos from server and update local database
-                        const response = await fetch('https://mk313-server.mk313.com/api/todos');
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        const serverTodos = await response.json();
-                        await db.todos.clear();
-                        await db.todos.bulkAdd(serverTodos);
-                        setTodos(serverTodos);
-                    } catch (error) {
-                        console.error('Failed to fetch:', error);
-                    }
-                }
+    // Function to sync local unsynced todos to the server
+    const syncLocalTodos = async () => {
+        const unsyncedTodos = await db.todos.where('synced').equals(0).toArray(); // Get unsynced items
+
+        for (const todo of unsyncedTodos) {
+            const response = await fetch('http://localhost:3010/api/todos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: todo.text })
+            });
+
+            if (response.ok) {
+                const serverTodo = await response.json();
+                await db.todos.update(todo._id, { _id: serverTodo._id, synced: 1 }); // Mark as synced
             }
-        };
+        }
+    };
 
-        // Add event listeners for online and offline events
-        window.addEventListener('online', syncWithServer);
-        window.addEventListener('offline', () => console.log('Offline'));
+    // Sync both ways (push unsynced items and fetch new ones)
+    const syncWithServer = async () => {
+        if (navigator.onLine) {
+            const serverOnline = await isServerOnline();
+            if (serverOnline) {
+                try {
+                    // Push unsynced items to the server
+                    await syncLocalTodos();
 
-        // Initial sync with server
-        syncWithServer();
+                    // Fetch new todos from the server
+                    const response = await fetch('http://localhost:3010/api/todos');
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const serverTodos = await response.json();
 
-        // Cleanup event listeners on component unmount
-        return () => {
-            window.removeEventListener('online', syncWithServer);
-            window.removeEventListener('offline', () => console.log('Offline'));
-        };
-    }, []);
+                    // Clear local DB and sync with server todos
+                    await db.todos.clear();
+                    for (const todo of serverTodos) {
+                        await db.todos.put({ ...todo, synced: 1 }); // Mark as synced
+                    }
 
-    const addTodo = async () => {
-        if (input.trim() !== '') {
-            const newTodo = { text: input.trim() };
-            const id = await db.todos.add(newTodo);
-            setTodos(prevTodos => [...prevTodos, { ...newTodo, id }]);
-            setInput('');
-            inputRef.current.focus(); // Set focus back to input field
-
-            // Sync with server
-            if (navigator.onLine) {
-                const serverOnline = await isServerOnline();
-                if (serverOnline) {
-                    await fetch('https://mk313-server.mk313.com/api/todos', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(newTodo)
-                    });
+                    setTodos(serverTodos);
+                } catch (error) {
+                    console.error('Failed to fetch:', error);
                 }
             }
         }
     };
 
-    const removeTodo = async (idToRemove) => {
-        await db.todos.delete(idToRemove);
-        setTodos(prevTodos => prevTodos.filter(todo => todo.id !== idToRemove));
+    useEffect(() => {
+        // Load todos from IndexedDB
+        loadTodosFromLocal();
 
-        // Sync with server
-        if (navigator.onLine) {
-            const serverOnline = await isServerOnline();
-            if (serverOnline) {
-                await fetch(`https://mk313-server.mk313.com/api/todos/${idToRemove}`, {
-                    method: 'DELETE'
-                });
+        // Sync when the app is online
+        window.addEventListener('online', syncWithServer);
+
+        // Initial sync with the server
+        syncWithServer();
+
+        // Clean up event listener
+        return () => {
+            window.removeEventListener('online', syncWithServer);
+        };
+    }, []);
+
+    const addTodo = async () => {
+        if (input.trim() !== '') {
+            const newTodo = { text: input.trim(), synced: 0 }; // Unsynced by default
+            const id = await db.todos.add(newTodo);
+            setTodos(prevTodos => [...prevTodos, { ...newTodo, _id: id }]);
+            setInput('');
+            inputRef.current.focus();
+
+            // Try syncing if online
+            if (navigator.onLine) {
+                const serverOnline = await isServerOnline();
+                if (serverOnline) {
+                    await syncLocalTodos(); // Push local changes
+                }
             }
+        }
+    };
+    const removeTodo = async (idToRemove) => {
+        console.log('Removing todo with id:', idToRemove);
+        if (idToRemove !== undefined) {
+            await db.todos.delete(idToRemove);
+            setTodos(prevTodos => prevTodos.filter(todo => todo._id !== idToRemove));
+
+            if (navigator.onLine) {
+                const serverOnline = await isServerOnline();
+                if (serverOnline) {
+                    await fetch(`http://localhost:3010/api/todos/${idToRemove}`, {
+                        method: 'DELETE'
+                    });
+                }
+            }
+        } else {
+            console.error('Invalid id:', idToRemove);
         }
     };
 
@@ -124,9 +145,6 @@ function App() {
                         <span className="text-primary">MK313</span>
                     </a>
                 </h1>
-                {/*<a href="http://cemic.mk313.com/" className="text-decoration-none mt-2" target="_blank" rel="noopener noreferrer">*/}
-                {/*    <span className="text-primary">Link to: CeMIC URLs</span> <FontAwesomeIcon icon={faExternalLinkAlt} />*/}
-                {/*</a>*/}
             </div>
 
             <h2 className="mt-4 mb-2">To-Do List</h2>
@@ -147,10 +165,10 @@ function App() {
             </div>
 
             {todos.map((todo) => (
-                <div key={todo.id} className="mb-2">
+                <div key={todo._id} className="mb-2">
                     <div className="d-flex justify-content-between align-items-center">
                         <span>{todo.text}</span>
-                        <button className="btn btn-outline-danger btn-sm" onClick={() => removeTodo(todo.id)} aria-label={`Remove ${todo.text}`}>
+                        <button className="btn btn-outline-danger btn-sm" onClick={() => removeTodo(todo._id)} aria-label={`Remove ${todo.text}`}>
                             <FontAwesomeIcon icon={faTrash} />
                         </button>
                     </div>
