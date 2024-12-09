@@ -11,18 +11,18 @@ const AppType = {
 };
 
 const urlsData = [
-    { url: "https://fpsoraia.smartchecksheets.com", name: "Fpsoraia (Smartchecksheets)s", AppType: AppType.APP, groupId: "grp-001" },
-    { url: "https://uaru.smartchecksheets.com", name: "UARU APP (Smartchecksheets)", AppType: AppType.APP, groupId: "grp-002" },
-    { url: "https://uat.smartchecksheets.com/", name: "UAT UARU APP (Smartchecksheets)", AppType: AppType.APP, groupId: "grp-003" },
-    { url: "https://uatapi.smartchecksheets.com/", name: "UAT UARU API (Smartchecksheets)", AppType: AppType.API, groupId: "grp-003" },
-    { url: "https://cemicqa.mk313.com", name: "QA APP (mk313)", AppType: AppType.APP, groupId: "grp-005", directIP: "http://182.180.62.223:3004/" },
-    { url: "https://cemicqaapi.mk313.com", name: "QA API (mk313)", AppType: AppType.API, groupId: "grp-005", directIP: "http://182.180.62.223:3003/" },
-    { url: "https://CeMIC_eni_app.mk313.com", name: "Eni APP (mk313)", AppType: AppType.APP, groupId: "grp-006" },
-    { url: "https://CeMIC_eni_api.mk313.com", name: "ENI API (mk313)", AppType: AppType.API, groupId: "grp-006" },
-    { url: "https://cemicuat.mk313.com", name: "UAT RAIA APP (mk313)", AppType: AppType.APP, groupId: "grp-007" },
-    { url: "https://cemicuatapi.mk313.com", name: "UAT RAIA API (mk313)", AppType: AppType.API, groupId: "grp-007" },
-    { url: "https://cemic_uat_uaru_app.mk313.com/", name: "UAT UARU APP (mk313)", AppType: AppType.APP, groupId: "grp-008" },
-    { url: "https://cemic_uat_uaru_api.mk313.com/", name: "UAT UARU API (mk313)", AppType: AppType.API, groupId: "grp-008" },
+    { url: "https://fpsoraia.smartchecksheets.com", name: "Fpsoraia (Smartchecksheets)", AppType: AppType.APP, groupId: "Smartchecksheets-Fpsoraia" },
+    { url: "https://uaru.smartchecksheets.com", name: "UARU APP (Smartchecksheets)", AppType: AppType.APP, groupId: "Smartchecksheets-UARU" },
+    { url: "https://uat.smartchecksheets.com/", name: "UAT UARU APP (Smartchecksheets)", AppType: AppType.APP, groupId: "Smartchecksheets-UARU-UAT" },
+    { url: "https://uatapi.smartchecksheets.com/", name: "UAT UARU API (Smartchecksheets)", AppType: AppType.API, groupId: "Smartchecksheets-UARU-UAT" },
+    { url: "https://cemicqa.mk313.com", name: "QA APP (mk313)", AppType: AppType.APP, groupId: "mk313-QA", directIP: "http://182.180.62.223:3004/" },
+    { url: "https://cemicqaapi.mk313.com", name: "QA API (mk313)", AppType: AppType.API, groupId: "mk313-QA", directIP: "http://182.180.62.223:3003/" },
+    { url: "https://cemicuat.mk313.com", name: "UAT RAIA APP (mk313)", AppType: AppType.APP, groupId: "mk313-UAT-RAIA" },
+    { url: "https://cemicuatapi.mk313.com", name: "UAT RAIA API (mk313)", AppType: AppType.API, groupId: "mk313-UAT-RAIA" },
+    { url: "https://cemic_uat_uaru_app.mk313.com/", name: "UAT UARU APP (mk313)", AppType: AppType.APP, groupId: "mk313-UAT-UARU" },
+    { url: "https://cemic_uat_uaru_api.mk313.com/", name: "UAT UARU API (mk313)", AppType: AppType.API, groupId: "mk313-UAT-UARU" },
+    { url: "https://CeMIC_eni_app.mk313.com", name: "Eni APP (mk313)", AppType: AppType.APP, groupId: "mk313-OLD-ENI" },
+    { url: "https://CeMIC_eni_api.mk313.com", name: "ENI API (mk313)", AppType: AppType.API, groupId: "mk313-OLD-ENI" },
 ];
 
 const copyURL = (url) => {
