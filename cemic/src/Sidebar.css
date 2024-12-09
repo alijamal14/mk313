@@ -45,8 +45,7 @@
     align-items: center;
     cursor: pointer;
     padding: 12px;
-    border-radius: 4px;
-    background-color: #bdd3ea; /* Dark background for contrast */
+    border-radius: 4px; /* Darsk background for contrast */
     font-size: 1.1em; /* Slightly larger font size */
     font-weight: bold; /* Bold text */
     margin-bottom: 5px;
