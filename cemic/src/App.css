@@ -31,118 +31,153 @@ a.btn {
     margin-left: 10px;
 }
 
+/* Enhanced Card Styles */
 .list-group {
     list-style-type: none;
     padding-left: 0;
 }
 
 .list-group-item {
+    position: relative;
     border: none;
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
+    padding: 30px 20px; /* Increased padding for better spacing */
+    margin-bottom: 20px; /* Increased margin for separation */
+    background-color: #ffffff;
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    overflow: hidden; /* To ensure border-radius works with child elements */
 }
 
-    .list-group-item:last-child {
-        border-bottom: none;
-    }
+.list-group-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    background-color: #f0f8ff; /* Light background on hover */
+}
 
+.list-group-item.mb-3.p-3.shadow-sm.rounded {
+    /* Remove Bootstrap classes to prevent conflicts */
+    margin-bottom: 20px;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Visit Button Styling */
+.visit-btn {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    padding: 8px 12px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.visit-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Collapse Button Styling */
 .collapse-btn {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
     color: #007bff;
-    margin-top: 10px;
+    transition: color 0.3s;
 }
 
-    .collapse-btn:hover {
-        text-decoration: underline;
-    }
+.collapse-btn:hover {
+    color: #0056b3;
+}
 
+/* Input Group Styling */
 .input-group {
-    display: flex;
-    width: 100%;
-}
-
-.input-group-append .btn {
-    width: auto;
+    margin-top: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 15px;
-    font-size: 1.1em;
-}
-
-.input-group input {
-    width: 100%;
-    flex: 1;
 }
 
 .touch-friendly-input {
-    padding: 15px;
-    font-size: 1.1em;
+    flex: 1; /* Ensures the input takes up available width */
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px 12px; /* Increased padding for better touch accessibility */
+    font-size: 1em; /* Increased font size for readability */
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%; /* Ensures full width within the input group */
 }
 
-.shadow-sm {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.touch-friendly-input:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
 }
 
-.rounded {
-    border-radius: 5px;
+/* Clear Button Styling */
+.input-group-append .btn {
+    margin-left: 5px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #e9ecef;
+    transition: background-color 0.3s;
 }
 
-.mt-3 {
-    margin-top: 1rem;
+.input-group-append .btn:hover {
+    background-color: #ced4da;
 }
 
-.mb-3 {
-    margin-bottom: 1rem;
+/* Highlighted Element */
+.highlight {
+    border: 2px solid #007bff;
+    background-color: #e7f1ff;
+    transition: border 0.3s, background-color 0.3s;
 }
 
-.visit-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-    border: none;
+/* Version Text Styling */
+.version {
+    font-size: 1em;
+    color: #555;
 }
 
-    .visit-btn:hover {
-        background-color: #0056b3;
-    }
+/* Additional Styling for Headings */
+.list-group-item h4,
+.list-group-item h5 {
+    color: #343a40;
+    margin-bottom: 10px;
+}
 
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .container {
-        padding: 10px;
+        padding: 15px;
     }
 
-    .input-group input {
-        padding: 10px;
-    }
-
-    .touch-friendly-input {
-        padding: 10px;
-        font-size: 1em;
-    }
-
-    .input-group-append .btn {
-        padding: 10px;
-        font-size: 1em;
+    .list-group-item {
+        padding: 20px 15px;
     }
 
     .visit-btn {
-        padding: 8px 12px;
-        font-size: 14px;
+        padding: 6px 10px;
     }
-}
 
-.highlight {
-    background-color: yellow;
+    .collapse-btn {
+        margin-top: 10px;
+    }
+
+    .sidebar {
+        width: 180px;
+        padding: 15px;
+    }
+
+    .content {
+        margin-left: 200px; /* Adjust based on sidebar width */
+    }
+
+    .content.sidebar-closed {
+        margin-left: 20px;
+    }
 }
 
 /* New styles for the sidebar */
@@ -159,27 +194,27 @@ a.btn {
     transition: transform 0.3s ease;
 }
 
-    .sidebar.closed {
-        transform: translateX(-100%);
-    }
+.sidebar.closed {
+    transform: translateX(-100%);
+}
 
-    .sidebar.open {
-        transform: translateX(0);
-    }
+.sidebar.open {
+    transform: translateX(0);
+}
 
-    .sidebar .list-group-item {
-        padding: 10px 15px;
-        border-bottom: 1px solid #ddd;
-    }
+.sidebar .list-group-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
 
-        .sidebar .list-group-item a {
-            text-decoration: none;
-            color: #007bff;
-        }
+.sidebar .list-group-item a {
+    text-decoration: none;
+    color: #007bff;
+}
 
-            .sidebar .list-group-item a:hover {
-                text-decoration: underline;
-            }
+.sidebar .list-group-item a:hover {
+    text-decoration: underline;
+}
 
 .content {
     margin-left: 220px; /* Adjust based on sidebar width */
@@ -187,9 +222,9 @@ a.btn {
     transition: margin-left 0.3s ease;
 }
 
-    .content.sidebar-closed {
-        margin-left: 20px;
-    }
+.content.sidebar-closed {
+    margin-left: 20px;
+}
 
 .sidebar-toggle {
     position: fixed;
@@ -204,6 +239,12 @@ a.btn {
     border-radius: 5px;
 }
 
-    .sidebar-toggle:hover {
-        background-color: #0056b3;
-    }
+.sidebar-toggle:hover {
+    background-color: #0056b3;
+}
+
+/* Additional Styling for Headings */
+.list-group-item h4,
+.list-group-item h5 {
+    color: #343a40;
+}

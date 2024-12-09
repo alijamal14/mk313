@@ -81,15 +81,18 @@ const App = () => {
             </button>
             <Sidebar urls={urls} isOpen={isSidebarOpen} /> {/* Add the Sidebar component */}
             <div className={`content ml-4 ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
-                <a href="http://cemic.mk313.com/" className="text-decoration-none">
-                    <h1 className="text-center mb-4 text-primary">CeMIC URLs</h1>
-                </a>
+                <div className="d-flex justify-content-between align-items-center">
+                    <a href="http://cemic.mk313.com/" className="text-decoration-none">
+                        <h1 className="text-center mb-4 text-primary">CeMIC URLs</h1>
+                    </a>
+                    <span className="version">Version: {packageJson.version}</span>
+                </div>
                 <a href="https://stats.uptimerobot.com/697oyuV1v3" className="text-decoration-none mt-2" target="_blank" rel="noopener noreferrer">
                     <span className="text-primary">CeMIC UpTime Monitor</span> <FontAwesomeIcon icon={faExternalLinkAlt} />
                 </a>
                 <ul className="list-group mt-3">
                     {urls.filter(item => item.AppType === AppType.APP).map(appItem => (
-                        <li id={appItem.url} key={appItem.url} className="list-group-item mb-3 p-3 shadow-sm rounded">
+                        <li id={appItem.url} key={appItem.url} className="list-group-item">
                             <div className="d-flex justify-content-between align-items-center mb-2">
                                 <h4>{appItem.name} ({appItem.AppType})</h4>
                                 <a href={appItem.url} className="btn btn-primary btn-sm visit-btn">Visit</a>
@@ -145,9 +148,6 @@ const App = () => {
                         </li>
                     ))}
                 </ul>
-                <footer className="text-center mt-5">
-                    <p>Version: {packageJson.version}</p>
-                </footer>
             </div>
         </div>
     );
