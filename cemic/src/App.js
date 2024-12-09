@@ -11,16 +11,18 @@ const AppType = {
 };
 
 const urlsData = [
-    { url: "https://fpsoraia.smartchecksheets.com", name: "Fpsoraia", AppType: AppType.APP, groupId: "grp-001" },
-    { url: "https://uaru.smartchecksheets.com", name: "UARU APP", AppType: AppType.APP, groupId: "grp-002" },
-    { url: "https://uat.smartchecksheets.com/", name: "UAT APP", AppType: AppType.APP, groupId: "grp-003" },
-    { url: "https://uatapi.smartchecksheets.com/", name: "UAT API", AppType: AppType.API, groupId: "grp-003" },
-    { url: "https://cemicqa.mk313.com", name: "QA APP", AppType: AppType.APP, groupId: "grp-005", directIP: "http://182.180.62.223:3004/" },
-    { url: "https://cemicqaapi.mk313.com", name: "QA API", AppType: AppType.API, groupId: "grp-005", directIP: "http://182.180.62.223:3003/" },
-    { url: "https://CeMIC_eni_app.mk313.com", name: "Eni APP", AppType: AppType.APP, groupId: "grp-006" },
-    { url: "https://CeMIC_eni_api.mk313.com", name: "ENI API", AppType: AppType.API, groupId: "grp-006" },
-    { url: "https://cemicuat.mk313.com", name: "UARU PreProd APP", AppType: AppType.APP, groupId: "grp-007" },
-    { url: "https://cemicuatapi.mk313.com", name: "UARU PreProd API", AppType: AppType.API, groupId: "grp-007" },
+    { url: "https://fpsoraia.smartchecksheets.com", name: "Fpsoraia (Smartchecksheets)s", AppType: AppType.APP, groupId: "grp-001" },
+    { url: "https://uaru.smartchecksheets.com", name: "UARU APP (Smartchecksheets)", AppType: AppType.APP, groupId: "grp-002" },
+    { url: "https://uat.smartchecksheets.com/", name: "UAT UARU APP (Smartchecksheets)", AppType: AppType.APP, groupId: "grp-003" },
+    { url: "https://uatapi.smartchecksheets.com/", name: "UAT UARU API (Smartchecksheets)", AppType: AppType.API, groupId: "grp-003" },
+    { url: "https://cemicqa.mk313.com", name: "QA APP (mk313)", AppType: AppType.APP, groupId: "grp-005", directIP: "http://182.180.62.223:3004/" },
+    { url: "https://cemicqaapi.mk313.com", name: "QA API (mk313)", AppType: AppType.API, groupId: "grp-005", directIP: "http://182.180.62.223:3003/" },
+    { url: "https://CeMIC_eni_app.mk313.com", name: "Eni APP (mk313)", AppType: AppType.APP, groupId: "grp-006" },
+    { url: "https://CeMIC_eni_api.mk313.com", name: "ENI API (mk313)", AppType: AppType.API, groupId: "grp-006" },
+    { url: "https://cemicuat.mk313.com", name: "UAT RAIA APP (mk313)", AppType: AppType.APP, groupId: "grp-007" },
+    { url: "https://cemicuatapi.mk313.com", name: "UAT RAIA API (mk313)", AppType: AppType.API, groupId: "grp-007" },
+    { url: "https://cemic_uat_uaru_app.mk313.com/", name: "UAT UARU APP (mk313)", AppType: AppType.APP, groupId: "grp-008" },
+    { url: "https://cemic_uat_uaru_api.mk313.com/", name: "UAT UARU API (mk313)", AppType: AppType.API, groupId: "grp-008" },
 ];
 
 const copyURL = (url) => {
