@@ -126,12 +126,12 @@
 .tag {
     display: inline-flex;
     align-items: center;
-    background-color: #ccc;
-    color: #000;
-    padding: 2px 6px;
-    margin: 2px;
-    border-radius: 4px;
-    cursor: pointer; /* Add cursor pointer */
+    padding: 4px 8px;
+    margin: 4px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .tag .tag-close-icon {
@@ -140,11 +140,16 @@
 }
 
 .tag.selected {
-    border: 2px solid #000;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ffffff; /* Add a white border to selected tags */
+    font-weight: bold; /* Make the text bold */
+    background-color: #2980b9 !important; /* Change background color for selected tags */
 }
 
 .tag:hover {
-    opacity: 0.8;
+    opacity: 0.9;
+    cursor: pointer;
 }
 
 .tags-list {
@@ -161,4 +166,28 @@
     border: none;
     border-radius: 4px;
     font-size: 1em;
+}
+
+.selected-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    padding: 0 10px;
+    border-bottom: 1px solid #34495e;
+    padding-bottom: 10px;
+}
+
+.unselected-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+.selected .tag {
+    background-color: #2980b9 !important;
+    border: 2px solid #ffffff;
+    font-weight: bold;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

@@ -7,27 +7,21 @@ import { useDebounce } from './useDebounce';
 
 const tagStyles = {};
 const getTagStyle = (tag) => {
+    const colors = [
+        '#e74c3c', // red
+        '#3498db', // blue
+        '#2ecc71', // green
+        '#9b59b6', // purple
+        '#f1c40f', // yellow
+        '#e67e22', // orange
+        '#1abc9c', // turquoise
+        '#34495e'  // dark blue
+    ];
     if (!tagStyles[tag]) {
-        // Assign consistent color based on tag hash
-        let hash = 0;
-        for (let i = 0; i < tag.length; i++) {
-            hash = tag.charCodeAt(i) + ((hash << 5) - hash);
-        }
-        // Generate background color
-        const colorInt = Math.abs(hash % 0xFFFFFF);
-        const bgColor = '#' + colorInt.toString(16).padStart(6, '0');
-
-        // Determine if background is dark
-        const r = (colorInt >> 16) & 0xFF;
-        const g = (colorInt >> 8) & 0xFF;
-        const b = colorInt & 0xFF;
-        const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
-
-        const textColor = luminance > 186 ? '#000000' : '#FFFFFF';
-
+        const color = colors[Object.keys(tagStyles).length % colors.length];
         tagStyles[tag] = {
-            backgroundColor: bgColor,
-            color: textColor
+            backgroundColor: color,
+            color: '#ffffff'
         };
     }
     return tagStyles[tag];
@@ -78,7 +72,7 @@ const Sidebar = ({ urls, isOpen }) => {
         if (selectedTags.length > 0) {
             filtered = filtered.filter(item => {
                 const itemTags = getTagsFromName(item.name);
-                return selectedTags.every(tag => itemTags.includes(tag));
+                return selectedTags.some(tag => itemTags.includes(tag));
             });
         }
 
@@ -89,6 +83,12 @@ const Sidebar = ({ urls, isOpen }) => {
     const displayedTags = allTags.filter(tag =>
         tag.toLowerCase().includes(debouncedTagsSearchInput.toLowerCase())
     );
+
+    const sortedTags = [...displayedTags].sort((a, b) => {
+        const aSelected = selectedTags.includes(a) ? -1 : 0;
+        const bSelected = selectedTags.includes(b) ? -1 : 0;
+        return aSelected - bSelected;
+    });
 
     return (
         <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
@@ -108,25 +108,35 @@ const Sidebar = ({ urls, isOpen }) => {
                 onChange={(e) => setTagsSearchInput(e.target.value)}
                 aria-label="Search Tags"
             />
-            <div className="tags-list">
-                {displayedTags.map(tag => (
+            <div className="selected-tags-list">
+                {selectedTags.map(tag => (
                     <span
                         key={tag}
-                        className={`tag ${selectedTags.includes(tag) ? 'selected' : ''}`}
+                        className="tag selected"
                         style={getTagStyle(tag)}
                         onClick={() => handleTagClick(tag)}
                     >
                         {tag}
-                        {selectedTags.includes(tag) && (
-                            <FontAwesomeIcon
-                                icon={faTimes}
-                                className="tag-close-icon"
-                                onClick={(e) => {
-                                    e.stopPropagation(); // Prevent parent onClick from triggering
-                                    handleTagClick(tag);
-                                }}
-                            />
-                        )}
+                        <FontAwesomeIcon
+                            icon={faTimes}
+                            className="tag-close-icon"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleTagClick(tag);
+                            }}
+                        />
+                    </span>
+                ))}
+            </div>
+            <div className="unselected-tags-list">
+                {sortedTags.filter(tag => !selectedTags.includes(tag)).map(tag => (
+                    <span
+                        key={tag}
+                        className="tag"
+                        style={getTagStyle(tag)}
+                        onClick={() => handleTagClick(tag)}
+                    >
+                        {tag}
                     </span>
                 ))}
             </div>
