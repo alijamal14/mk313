@@ -92,11 +92,18 @@
     display: block;
     border-radius: 4px;
     font-size: 0.95em;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.api-item a .tag {
+    margin: 0 5px 5px 0;
 }
 
 .api-item a:hover {
     background-color: #3b4a59; /* Darker background on hover */
     color: #ffffff; /* Slightly lighter on hover */
+    text-decoration: underline;
 }
 
 .sidebar-toggle {
@@ -114,4 +121,44 @@
 
 .sidebar-toggle:hover {
     background-color: #0056b3;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ccc;
+    color: #000;
+    padding: 2px 6px;
+    margin: 2px;
+    border-radius: 4px;
+    cursor: pointer; /* Add cursor pointer */
+}
+
+.tag .tag-close-icon {
+    margin-left: 4px;
+    cursor: pointer; /* Ensure the close icon is clickable */
+}
+
+.tag.selected {
+    border: 2px solid #000;
+}
+
+.tag:hover {
+    opacity: 0.8;
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+.tag-search-input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 10px 10px 0 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
 }
