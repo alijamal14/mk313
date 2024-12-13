@@ -191,3 +191,28 @@
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* ...existing styles... */
+
+.toggle-tags-button {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #16a085;
+    color: #ecf0f1;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle-tags-button:hover {
+    background-color: #1abc9c;
+}
+
+/* Hide tags in list-group when tags are disabled */
+.list-group-item .tag {
+    display: inline-flex;
+    margin-left: 5px;
+}

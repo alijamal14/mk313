@@ -40,6 +40,7 @@ const Sidebar = ({ urls, isOpen }) => {
     // State for selected tags and filtered URLs
     const [selectedTags, setSelectedTags] = useState([]);
     const [filteredUrlsState, setFilteredUrlsState] = useState(filteredUrls);
+    const [tagsEnabled, setTagsEnabled] = useState(false); // Changed from true to false
 
     // Function to extract tags from item.name
     const getTagsFromName = (name) => name.split(' ');
@@ -69,7 +70,7 @@ const Sidebar = ({ urls, isOpen }) => {
             );
         }
 
-        if (selectedTags.length > 0) {
+        if (tagsEnabled && selectedTags.length > 0) { // Modify filtering based on tagsEnabled
             filtered = filtered.filter(item => {
                 const itemTags = getTagsFromName(item.name);
                 return selectedTags.some(tag => itemTags.includes(tag));
@@ -77,7 +78,7 @@ const Sidebar = ({ urls, isOpen }) => {
         }
 
         setFilteredUrlsState(filtered);
-    }, [debouncedSearchInput, selectedTags, filteredUrls]);
+    }, [debouncedSearchInput, selectedTags, filteredUrls, tagsEnabled]);
 
     // Filter tags based on tags search input
     const displayedTags = allTags.filter(tag =>
@@ -100,53 +101,64 @@ const Sidebar = ({ urls, isOpen }) => {
                 onChange={(e) => setSearchInput(e.target.value)}
                 aria-label="Search URLs"
             />
-            <input
-                type="search"
-                className="tag-search-input"
-                placeholder="Search tags..."
-                value={tagsSearchInput}
-                onChange={(e) => setTagsSearchInput(e.target.value)}
-                aria-label="Search Tags"
-            />
-            <div className="selected-tags-list">
-                {selectedTags.map(tag => (
-                    <span
-                        key={tag}
-                        className="tag selected"
-                        style={getTagStyle(tag)}
-                        onClick={() => handleTagClick(tag)}
-                    >
-                        {tag}
-                        <FontAwesomeIcon
-                            icon={faTimes}
-                            className="tag-close-icon"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleTagClick(tag);
-                            }}
-                        />
-                    </span>
-                ))}
-            </div>
-            <div className="unselected-tags-list">
-                {sortedTags.filter(tag => !selectedTags.includes(tag)).map(tag => (
-                    <span
-                        key={tag}
-                        className="tag"
-                        style={getTagStyle(tag)}
-                        onClick={() => handleTagClick(tag)}
-                    >
-                        {tag}
-                    </span>
-                ))}
-            </div>
+            {tagsEnabled && (
+                <>
+                    <input
+                        type="search"
+                        className="tag-search-input"
+                        placeholder="Search tags..."
+                        value={tagsSearchInput}
+                        onChange={(e) => setTagsSearchInput(e.target.value)}
+                        aria-label="Search Tags"
+                    />
+                    <div className="selected-tags-list">
+                        {selectedTags.map(tag => (
+                            <span
+                                key={tag}
+                                className="tag selected"
+                                style={getTagStyle(tag)}
+                                onClick={() => handleTagClick(tag)}
+                            >
+                                {tag}
+                                <FontAwesomeIcon
+                                    icon={faTimes}
+                                    className="tag-close-icon"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleTagClick(tag);
+                                    }}
+                                />
+                            </span>
+                        ))}
+                    </div>
+                    <div className="unselected-tags-list">
+                        {sortedTags.filter(tag => !selectedTags.includes(tag)).map(tag => (
+                            <span
+                                key={tag}
+                                className="tag"
+                                style={getTagStyle(tag)}
+                                onClick={() => handleTagClick(tag)}
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                </>
+            )}
+            <button
+                className="toggle-tags-button"
+                onClick={() => setTagsEnabled(!tagsEnabled)}
+            >
+                {tagsEnabled ? 'Disable Tags' : 'Enable Tags'}
+            </button>
             <ul className="list-group">
                 {filteredUrlsState.map(item => (
                     <li key={item.url} className="list-group-item">
                         <div className="api-item">
                             <FontAwesomeIcon icon={faFileAlt} className="file-icon" />
                             <a href={`#${item.url}`}>
-                                {getTagsFromName(item.name).map(tag => (
+                                {item.name}
+                                {tagsEnabled && item.tags && item.tags.map(tag => (
                                     <span
                                         key={tag}
                                         className="tag"
