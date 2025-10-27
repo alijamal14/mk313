@@ -1,0 +1,48 @@
+{
+  "name": "MK313",
+  "short_name": "MK313",
+  "description": "MK313 blends software innovation with fresh, healthy juice and food experiences.",
+  "id": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a6cff",
+  "theme_color": "#0a6cff",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa-splash-1024x1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Explore Products",
+      "url": "/#products",
+      "description": "View MK313 food and beverage offerings"
+    },
+    {
+      "name": "Software Services",
+      "url": "/#services",
+      "description": "Discover MK313 technology services"
+    }
+  ]
+}
