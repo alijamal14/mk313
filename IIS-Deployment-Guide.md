@@ -97,7 +97,19 @@ if (Get-WebAppPool -Name "mk313" -ErrorAction SilentlyContinue) {
 }
 ```
 
-### 5. Verify Deployment
+### 5. Configure Jenkins CI/CD (Optional)
+
+A `Jenkinsfile` lives at the repository root and drives the automated deployment. The pipeline now uses Jenkins’ built-in node (`agent any`), so no extra labels are required.
+
+1. **Install Jenkins and Java** on the IIS server (or any Windows machine with Web Deploy access).
+2. **Create a Pipeline job** that points to this repository and branch.
+3. **Set build parameters or defaults** as needed:
+   - `IIS_DEST_PATH` (default `C:\inetpub\wwwroot\mk313`) – leave it to deploy via file system on the same server.
+   - Optional: clear `IIS_DEST_PATH` and set `IIS_SITE_NAME`, `IIS_WEB_DEPLOY_URL`, plus Jenkins credential `mk313-webdeploy` if you prefer Web Deploy publishing.
+4. **Ensure Web Deploy is installed** on the agent and reachable.
+5. Run the job—Jenkins stages the static site files, then runs `msdeploy sync` either to the local folder or the remote IIS site.
+
+### 6. Verify Deployment
 
 Test locally:
 ```powershell
