@@ -2,13 +2,15 @@
    Navigations: network-first, so a fresh deploy is never hidden behind a stale cache.
    Static assets: stale-while-revalidate. */
 
-const VERSION = 'mk313-v3';
+/* Asset URLs carry a ?v= token. Bump it in the HTML and here together so a
+   stale cache from a previous release can never match the new markup. */
+const VERSION = 'mk313-v4';
 const PRECACHE = [
   '/',
   '/index.html',
   '/about.html',
-  '/css/styles.css',
-  '/js/main.js',
+  '/css/styles.css?v=2',
+  '/js/main.js?v=2',
   '/apple-touch-icon.png',
   '/manifest.webmanifest'
 ];
