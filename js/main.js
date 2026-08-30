@@ -1,77 +1,107 @@
-// Main site interactions
-(function() {
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+/* MK313 — site interactions */
+(function () {
+  'use strict';
 
-  const navToggle = document.querySelector('.nav-toggle');
-  const mainNav = document.querySelector('.main-nav');
+  /* --- Current year ------------------------------------------------------ */
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  function setNavOpen(isOpen) {
-    if (!navToggle || !mainNav) return;
-    mainNav.classList.toggle('open', isOpen);
-    navToggle.setAttribute('aria-expanded', String(isOpen));
+  /* --- Mobile navigation ------------------------------------------------- */
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.querySelector('.site-nav');
+  var scrim = document.querySelector('.nav-scrim');
+  var isOpen = false;
+
+  function setNav(open) {
+    if (!toggle || !nav) return;
+    isOpen = open;
+    nav.classList.toggle('is-open', open);
+    if (scrim) scrim.classList.toggle('is-open', open);
+    document.body.classList.toggle('nav-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   }
 
-  function closeNav() {
-    setNavOpen(false);
+  function closeNav(returnFocus) {
+    if (!isOpen) return;
+    setNav(false);
+    if (returnFocus && toggle) toggle.focus();
   }
 
-  if (navToggle && mainNav) {
-    navToggle.addEventListener('click', () => {
-      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-      setNavOpen(!expanded);
-    });
+  if (toggle && nav) {
+    // The drawer transitions `visibility`, so it is not focusable until the
+    // transition has run. Move focus once it settles, with a timed fallback.
+    function focusDrawer() {
+      var first = nav.querySelector('a');
+      if (!isOpen || !first || nav.contains(document.activeElement)) return;
+      first.focus();
+    }
 
-    document.addEventListener('click', (e) => {
-      if (!mainNav.classList.contains('open')) return;
-      if (!mainNav.contains(e.target) && !navToggle.contains(e.target)) {
-        closeNav();
-      }
-    });
-
-    mainNav.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        closeNav();
+    toggle.addEventListener('click', function () {
+      setNav(!isOpen);
+      if (!isOpen) return;
+      nav.addEventListener('transitionend', function onEnd(e) {
+        if (e.target !== nav) return;
+        nav.removeEventListener('transitionend', onEnd);
+        focusDrawer();
       });
+      window.setTimeout(focusDrawer, 400);
     });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && mainNav.classList.contains('open')) {
-        closeNav();
-        navToggle.focus();
-      }
+    if (scrim) scrim.addEventListener('click', function () { closeNav(false); });
+
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) closeNav(false);
     });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeNav(true);
+    });
+
+    // Keep focus inside the drawer while it is open.
+    document.addEventListener('focusin', function (e) {
+      if (!isOpen) return;
+      if (nav.contains(e.target) || toggle.contains(e.target)) return;
+      var first = nav.querySelector('a');
+      if (first) first.focus();
+    });
+
+    var wide = window.matchMedia('(min-width: 901px)');
+    var onWide = function (e) { if (e.matches) closeNav(false); };
+    if (wide.addEventListener) wide.addEventListener('change', onWide);
+    else if (wide.addListener) wide.addListener(onWide);
   }
 
-  // Careers form validation (client-side only placeholder)
-  const applyForm = document.getElementById('applyForm');
-  if (applyForm) {
-    applyForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let valid = true;
-      ['name','email','area'].forEach(id => {
-        const field = applyForm.querySelector('#'+id);
-        const err = applyForm.querySelector(`[data-error-for="${id}"]`);
-        if (!field) return;
-        if (!field.value.trim()) { valid = false; if (err) err.textContent = 'Required'; }
-        else if (id === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(field.value)) { valid = false; if (err) err.textContent = 'Invalid email'; }
-        else if (err) err.textContent = '';
-      });
+  /* --- Reveal on scroll --------------------------------------------------- */
+  var targets = document.querySelectorAll('[data-reveal]');
 
-      const success = applyForm.querySelector('.form-success');
-      if (valid && success) {
-        success.hidden = false;
-        applyForm.reset();
-        setTimeout(()=> success.hidden = true, 5000);
-      }
-    });
+  function showAll() {
+    for (var i = 0; i < targets.length; i++) targets[i].classList.add('is-in');
+  }
+
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    showAll();
+  } else {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+    for (var j = 0; j < targets.length; j++) observer.observe(targets[j]);
+
+    // Safety net: never leave content hidden if something goes wrong.
+    window.setTimeout(showAll, 3000);
   }
 })();
 
-// Service worker registration
+/* --- Service worker ------------------------------------------------------ */
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(err => {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function (err) {
       console.error('Service worker registration failed:', err);
     });
   });

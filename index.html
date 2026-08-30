@@ -3,28 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MK313 – Production Software &amp; Applied AI</title>
-  <meta name="description" content="MK313 is an Islamabad-based team building practical operational software and applied AI systems — with first-hand experience running hospitality and food operations." />
+  <title>MK313 — Production Software &amp; Applied AI, Islamabad</title>
+  <meta name="description" content="MK313 is an Islamabad software studio building production operational systems and applied AI — hiring workflows, rates and CRM tooling, invoicing, and food-safety reporting — grounded in the guest housing and food operations we run ourselves." />
   <link rel="canonical" href="https://mk313.com/" />
+
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MK313" />
   <meta property="og:url" content="https://mk313.com/" />
-  <meta property="og:title" content="MK313 – Production Software &amp; Applied AI" />
-  <meta property="og:description" content="Practical operational software and applied AI systems built in Islamabad — grounded in real guest, staffing, and food workflows." />
-  <meta property="og:image" content="https://mk313.com/images/logo/logo.jpg" />
+  <meta property="og:title" content="MK313 — Production Software &amp; Applied AI" />
+  <meta property="og:description" content="An Islamabad studio building operational systems and applied AI that staff can run, review, and trust." />
+  <meta property="og:image" content="https://mk313.com/images/og-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="en_PK" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="MK313 – Production Software &amp; Applied AI" />
-  <meta name="twitter:description" content="Islamabad-based software and applied AI for real operations." />
-  <meta name="twitter:image" content="https://mk313.com/images/logo/logo.jpg" />
+  <meta name="twitter:title" content="MK313 — Production Software &amp; Applied AI" />
+  <meta name="twitter:description" content="An Islamabad studio building operational systems and applied AI that staff can run, review, and trust." />
+  <meta name="twitter:image" content="https://mk313.com/images/og-card.png" />
+
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#0a6cff" />
+  <meta name="theme-color" content="#fbfaf8" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0c0e0f" media="(prefers-color-scheme: dark)" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,290 +41,539 @@
     "name": "MK313",
     "url": "https://mk313.com/",
     "logo": "https://mk313.com/images/logo/logo.jpg",
-    "description": "MK313 builds practical operational software and applied AI systems from Islamabad, and also operates StayConnect guest housing and MK Kitchen food service.",
+    "founder": { "@type": "Person", "name": "Ali Jamal" },
+    "description": "MK313 builds production operational software and applied AI systems from Islamabad, and operates StayConnect guest housing and MK Kitchen food service.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Islamabad",
+      "addressCountry": "PK"
+    },
+    "email": "info@mk313.com",
     "sameAs": [
       "https://www.booking.com/hotel/pk/stayconnect-islamabad.html",
       "https://www.foodpanda.pk/restaurant/s57y/mk-kitchen-s57y"
     ],
     "contactPoint": [
-      {
-        "@type": "ContactPoint",
-        "telephone": "+92-331-5907960",
-        "contactType": "customer support",
-        "areaServed": "PK"
-      },
-      {
-        "@type": "ContactPoint",
-        "telephone": "+92-316-9218003",
-        "contactType": "customer support",
-        "areaServed": "PK"
-      }
+      { "@type": "ContactPoint", "telephone": "+92-331-5907960", "contactType": "sales", "areaServed": "PK" },
+      { "@type": "ContactPoint", "telephone": "+92-316-9218003", "contactType": "customer support", "areaServed": "PK" }
     ]
   }
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
   <header class="site-header">
-    <div class="container nav-wrapper">
-      <a href="#home" class="logo" aria-label="MK313 home">
-        <img src="images/logo/logo.jpg" alt="MK313 logo">
+    <div class="shell header-inner">
+      <a href="#top" class="brand" aria-label="MK313 — home">
+        <img class="brand-mark" src="apple-touch-icon.png" alt="" width="34" height="34" />
+        <span class="brand-name">MK313</span>
       </a>
-      <nav class="main-nav" id="primary-nav" aria-label="Main Navigation">
-        <ul>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
           <li><a href="#work">Work</a></li>
-          <li><a href="#capabilities">Capabilities</a></li>
-          <li><a href="#ai-systems">AI Systems</a></li>
+          <li><a href="#approach">Approach</a></li>
+          <li><a href="#ai">Applied AI</a></li>
           <li><a href="#operations">Operations</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="https://recruitment.mk313.com/careers">Careers</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#careers">Careers</a></li>
         </ul>
+        <a class="btn btn--primary" href="#contact">Start a project</a>
       </nav>
-      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="primary-nav" aria-expanded="false">☰</button>
+
+      <div class="header-cta">
+        <a class="btn btn--primary" href="#contact">Start a project</a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false">
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
   </header>
+  <div class="nav-scrim"></div>
 
-  <main id="main-content">
-    <section id="home" class="hero" role="region" aria-label="Hero">
-      <div class="container hero-content">
-        <p class="hero-eyebrow">MK313 · Islamabad</p>
-        <h1>Production software and applied AI for real operations.</h1>
-        <p class="tagline">We build practical systems for hiring, commerce, invoicing, and day-to-day operational workflows — grounded in first-hand experience running guest housing and food service.</p>
-        <div class="hero-cta">
-          <a href="#work" class="btn primary">Selected work</a>
-          <a href="#capabilities" class="btn outline">Capabilities</a>
-          <a href="https://recruitment.mk313.com/careers" class="btn subtle">Open roles</a>
+  <main id="main">
+    <!-- Hero ------------------------------------------------------------- -->
+    <section class="hero" id="top">
+      <svg class="hero-motif" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+        <g stroke="currentColor" stroke-width="7">
+          <path d="M4 132 L132 4" /><path d="M32 160 L160 32" />
+          <path d="M60 188 L188 60" /><path d="M88 216 L216 88" />
+          <path d="M-24 104 L104 -24" />
+        </g>
+      </svg>
+      <div class="shell hero-inner">
+        <p class="eyebrow">Islamabad &middot; Software &amp; Applied AI</p>
+        <h1 class="display">Production software and applied AI for <em>real operations</em>.</h1>
+        <p class="lede">
+          Operational systems for hiring, currency rates, invoicing and food-safety reporting —
+          plus the applied AI that supports them. Grounded in the guest housing and food
+          businesses we run ourselves.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="#work">See the work</a>
+          <a class="btn btn--ghost" href="#contact">Start a project</a>
         </div>
       </div>
-      <div class="hero-bg-overlay" aria-hidden="true"></div>
     </section>
 
-    <section id="work" class="work" aria-labelledby="work-heading">
-      <div class="container">
-        <h2 id="work-heading" class="section-title">Selected work</h2>
-        <p class="lead section-lead">Public systems that solve concrete operational problems. Each link opens the live product.</p>
-        <div class="work-grid">
-          <article class="work-card">
-            <div class="work-card-meta">
-              <span class="status-label status-live">Live</span>
-              <span class="work-domain">Hiring</span>
-            </div>
-            <h3>Recruitment Intelligence Platform</h3>
-            <p>Applicant workflows with an on-premise AI intake agent that supports classification and deduplication, followed by human recruiter review before decisions move forward.</p>
-            <a class="work-link" href="https://recruitment.mk313.com" target="_blank" rel="noopener noreferrer">Open recruitment.mk313.com</a>
-          </article>
-          <article class="work-card">
-            <div class="work-card-meta">
-              <span class="status-label status-live">Live</span>
-              <span class="work-domain">Rates &amp; CRM</span>
-            </div>
-            <h3>Pakistan Currency Exchange</h3>
-            <p>Currency rates and operational CRM tooling, including human-reviewed retrieval support for staff. Designed for day-to-day exchange operations — not financial advice or automated compliance decisioning.</p>
-            <a class="work-link" href="https://pakistancurrency.mk313.com" target="_blank" rel="noopener noreferrer">Open pakistancurrency.mk313.com</a>
-          </article>
-          <article class="work-card">
-            <div class="work-card-meta">
-              <span class="status-label status-live">Live</span>
-              <span class="work-domain">Billing</span>
-            </div>
-            <h3>Digital Invoices</h3>
-            <p>Serverless invoicing with shareable invoice URLs and QR/barcode lookup so teams can issue, share, and retrieve invoices without a heavy desktop install.</p>
-            <a class="work-link" href="https://invoices.mk313.com" target="_blank" rel="noopener noreferrer">Open invoices.mk313.com</a>
-          </article>
-          <article class="work-card">
-            <div class="work-card-meta">
-              <span class="status-label status-live">Live</span>
-              <span class="work-domain">Food safety</span>
-            </div>
-            <h3>La Sortie Food Safety</h3>
-            <p>Daily food-safety reporting with versioned forms, critical-failure visibility, and reviewer sign-off so kitchen teams can record checks and escalate issues clearly.</p>
-            <a class="work-link" href="https://lasortie.mk313.com" target="_blank" rel="noopener noreferrer">Open lasortie.mk313.com</a>
-          </article>
+    <!-- Proof strip ------------------------------------------------------ -->
+    <div class="proof">
+      <div class="shell proof-inner">
+        <p class="proof-label">In production</p>
+        <ul class="proof-list">
+          <li><a href="https://recruitment.mk313.com" target="_blank" rel="noopener noreferrer">recruitment.mk313.com</a></li>
+          <li><a href="https://pakistancurrency.mk313.com" target="_blank" rel="noopener noreferrer">pakistancurrency.mk313.com</a></li>
+          <li><a href="https://invoices.mk313.com" target="_blank" rel="noopener noreferrer">invoices.mk313.com</a></li>
+          <li><a href="https://lasortie.mk313.com" target="_blank" rel="noopener noreferrer">lasortie.mk313.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Work ------------------------------------------------------------- -->
+    <section class="section" id="work" aria-labelledby="work-h">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Selected work</p>
+          <h2 class="display" id="work-h">Systems in daily operational use.</h2>
+          <p class="lede">
+            Each entry links to the live deployment. Some are open to the public; others sit behind
+            a staff sign-in, so we have noted what you will actually see.
+          </p>
         </div>
 
-        <aside class="dev-callout" aria-labelledby="omnipos-heading">
-          <div class="work-card-meta">
-            <span class="status-label status-dev">In development</span>
-            <span class="work-domain">Retail / POS</span>
+        <div class="work-index">
+          <article class="work-row" data-reveal>
+            <p class="work-num" aria-hidden="true">01</p>
+            <div class="work-main">
+              <h3 class="display">Recruitment Intelligence Platform</h3>
+              <p>
+                Applicant workflows with an on-premise AI intake agent that supports classification
+                and deduplication, followed by human recruiter review before decisions move forward.
+              </p>
+            </div>
+            <div class="work-meta">
+              <div class="tag-row">
+                <span class="tag tag--live">Live</span>
+                <span class="tag">Hiring</span>
+              </div>
+              <a class="work-url" href="https://recruitment.mk313.com" target="_blank" rel="noopener noreferrer">
+                recruitment.mk313.com <span class="arrow" aria-hidden="true">&#8599;</span>
+                <span class="visually-hidden">(opens in a new tab)</span>
+              </a>
+              <p class="work-access">Public job board &middot; platform behind staff sign-in</p>
+            </div>
+          </article>
+
+          <article class="work-row" data-reveal>
+            <p class="work-num" aria-hidden="true">02</p>
+            <div class="work-main">
+              <h3 class="display">Pakistan Currency Exchange</h3>
+              <p>
+                Currency rates and operational CRM tooling, including human-reviewed retrieval
+                support for staff. Built for day-to-day exchange operations — not financial advice
+                or automated compliance decisioning.
+              </p>
+            </div>
+            <div class="work-meta">
+              <div class="tag-row">
+                <span class="tag tag--live">Live</span>
+                <span class="tag">Rates &amp; CRM</span>
+              </div>
+              <a class="work-url" href="https://pakistancurrency.mk313.com" target="_blank" rel="noopener noreferrer">
+                pakistancurrency.mk313.com <span class="arrow" aria-hidden="true">&#8599;</span>
+                <span class="visually-hidden">(opens in a new tab)</span>
+              </a>
+              <p class="work-access">Public site &middot; staff tooling behind sign-in</p>
+            </div>
+          </article>
+
+          <article class="work-row" data-reveal>
+            <p class="work-num" aria-hidden="true">03</p>
+            <div class="work-main">
+              <h3 class="display">Digital Invoices</h3>
+              <p>
+                Serverless invoicing with shareable invoice URLs and QR/barcode lookup, so a printed
+                document leads back to the exact record it came from — no heavy desktop install.
+              </p>
+            </div>
+            <div class="work-meta">
+              <div class="tag-row">
+                <span class="tag tag--live">Live</span>
+                <span class="tag">Billing</span>
+              </div>
+              <a class="work-url" href="https://invoices.mk313.com" target="_blank" rel="noopener noreferrer">
+                invoices.mk313.com <span class="arrow" aria-hidden="true">&#8599;</span>
+                <span class="visually-hidden">(opens in a new tab)</span>
+              </a>
+              <p class="work-access">Public lookup &middot; issuing behind sign-in</p>
+            </div>
+          </article>
+
+          <article class="work-row" data-reveal>
+            <p class="work-num" aria-hidden="true">04</p>
+            <div class="work-main">
+              <h3 class="display">La Sortie Food Safety</h3>
+              <p>
+                Daily food-safety reporting with versioned forms, critical-failure visibility and
+                reviewer sign-off, so kitchen teams can record checks and escalate issues clearly.
+              </p>
+            </div>
+            <div class="work-meta">
+              <div class="tag-row">
+                <span class="tag tag--live">Live</span>
+                <span class="tag">Food safety</span>
+              </div>
+              <a class="work-url" href="https://lasortie.mk313.com" target="_blank" rel="noopener noreferrer">
+                lasortie.mk313.com <span class="arrow" aria-hidden="true">&#8599;</span>
+                <span class="visually-hidden">(opens in a new tab)</span>
+              </a>
+              <p class="work-access">Staff sign-in required</p>
+            </div>
+          </article>
+
+          <article class="work-row" data-reveal>
+            <p class="work-num" aria-hidden="true">05</p>
+            <div class="work-main">
+              <h3 class="display">OmniPOS</h3>
+              <p>
+                An offline-first retail and point-of-sale architecture under active design and
+                build. Not launched, not in pilot, and not commercially available.
+              </p>
+            </div>
+            <div class="work-meta">
+              <div class="tag-row">
+                <span class="tag tag--dev">In development</span>
+                <span class="tag">Retail &amp; POS</span>
+              </div>
+              <p class="work-access">No public deployment yet</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach --------------------------------------------------------- -->
+    <section class="section approach" id="approach" aria-labelledby="approach-h">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">How we work</p>
+          <h2 class="display" id="approach-h">Start from the workflow, not the wireframe.</h2>
+        </div>
+        <div class="steps" data-reveal>
+          <div class="step">
+            <p class="step-n">01</p>
+            <h3>Understand the operation</h3>
+            <p>
+              Who does what today, where records break, and which decisions have to stay with a
+              person. We would rather map the real process than assume a tidy one.
+            </p>
           </div>
-          <h3 id="omnipos-heading">OmniPOS</h3>
-          <p>An offline-first retail and point-of-sale architecture under active design and build. Not launched, not in pilot, and not commercially available.</p>
-        </aside>
-      </div>
-    </section>
-
-    <section id="capabilities" class="capabilities" aria-labelledby="capabilities-heading">
-      <div class="container">
-        <h2 id="capabilities-heading" class="section-title">Software capabilities</h2>
-        <p class="lead section-lead">Engineering work designed for operational systems — APIs, integrations, durable data flows, and deployable apps.</p>
-        <div class="capability-grid">
-          <article class="capability-card">
-            <h3>Cloud apps &amp; APIs</h3>
-            <p>Web applications and service APIs designed for multi-user operational workloads.</p>
-          </article>
-          <article class="capability-card">
-            <h3>Enterprise integrations</h3>
-            <p>Connecting existing business systems so staff work from fewer disconnected tools.</p>
-          </article>
-          <article class="capability-card">
-            <h3>Offline-first / PWA</h3>
-            <p>Progressive web apps and offline-tolerant architectures for unreliable or intermittent connectivity.</p>
-          </article>
-          <article class="capability-card">
-            <h3>Data &amp; audit workflows</h3>
-            <p>Structured records, review steps, and audit-friendly histories for operational accountability.</p>
-          </article>
-          <article class="capability-card">
-            <h3>DevOps &amp; observability</h3>
-            <p>CI/CD, environment automation, and monitoring so releases and incidents are easier to manage.</p>
-          </article>
+          <div class="step">
+            <p class="step-n">02</p>
+            <h3>Build the smallest durable system</h3>
+            <p>
+              Something a team can run daily: clear status, reviewable records, and data flows that
+              hold up under edge cases and unreliable connectivity.
+            </p>
+          </div>
+          <div class="step">
+            <p class="step-n">03</p>
+            <h3>Stay with it after launch</h3>
+            <p>
+              Changes come from what breaks and what staff actually ask for. Software that nobody
+              maintains stops matching the operation within months.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="ai-systems" class="ai-systems" aria-labelledby="ai-heading">
-      <div class="container">
-        <h2 id="ai-heading" class="section-title">AI systems</h2>
-        <p class="lead section-lead">Applied AI with human review where outcomes matter. No autonomy theater — intake, extraction, retrieval, and workflow support that staff can verify.</p>
-        <div class="ai-layout">
-          <ul class="ai-list">
+    <!-- Capabilities ----------------------------------------------------- -->
+    <section class="section" id="capabilities" aria-labelledby="cap-h">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Capabilities</p>
+          <h2 class="display" id="cap-h">Engineering for systems that have to stay up.</h2>
+        </div>
+        <dl class="cap-list" data-reveal>
+          <div class="cap-row">
+            <dt>Cloud apps &amp; APIs</dt>
+            <dd>Web applications and service APIs designed for multi-user operational workloads.</dd>
+          </div>
+          <div class="cap-row">
+            <dt>Enterprise integrations</dt>
+            <dd>Connecting existing business systems so staff work from fewer disconnected tools.</dd>
+          </div>
+          <div class="cap-row">
+            <dt>Offline-first &amp; PWA</dt>
+            <dd>Progressive web apps and offline-tolerant architectures for unreliable or intermittent connectivity.</dd>
+          </div>
+          <div class="cap-row">
+            <dt>Data &amp; audit workflows</dt>
+            <dd>Structured records, review steps, and audit-friendly histories for operational accountability.</dd>
+          </div>
+          <div class="cap-row">
+            <dt>DevOps &amp; observability</dt>
+            <dd>CI/CD, environment automation, and monitoring so releases and incidents are easier to manage.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Applied AI ------------------------------------------------------- -->
+    <section class="section" id="ai" aria-labelledby="ai-h">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Applied AI</p>
+          <h2 class="display" id="ai-h">Assistance that a person still signs off.</h2>
+          <p class="lede">
+            No autonomy theatre. Intake, extraction, retrieval and workflow support that staff can
+            check — with people accountable wherever the outcome matters.
+          </p>
+        </div>
+
+        <div class="ai-grid">
+          <ul class="ai-list" data-reveal>
             <li>
-              <strong>AI intake &amp; structured extraction</strong>
-              <span>Parse inbound applications, documents, or forms into structured fields for downstream review.</span>
+              <h3>AI intake &amp; structured extraction</h3>
+              <p>Parse inbound applications, documents or forms into structured fields for downstream review.</p>
             </li>
             <li>
-              <strong>Human-reviewed RAG &amp; knowledge tools</strong>
-              <span>Retrieval-assisted answers and knowledge lookup with people in the loop before action.</span>
+              <h3>Human-reviewed retrieval</h3>
+              <p>Retrieval-assisted answers and knowledge lookup with people in the loop before action is taken.</p>
             </li>
             <li>
-              <strong>Workflow automation</strong>
-              <span>Route, classify, and queue work so teams spend less time on repetitive triage.</span>
+              <h3>Workflow automation</h3>
+              <p>Route, classify and queue work so teams spend less time on repetitive triage.</p>
             </li>
             <li>
-              <strong>Private / on-premise deployment</strong>
-              <span>Support for deployments that keep sensitive intake and models closer to your own infrastructure.</span>
+              <h3>Private &amp; on-premise deployment</h3>
+              <p>Support for deployments that keep sensitive intake and models closer to your own infrastructure.</p>
             </li>
             <li>
-              <strong>Operational analytics</strong>
-              <span>Practical reporting on throughput, exceptions, and review outcomes — not vanity dashboards.</span>
+              <h3>Operational analytics</h3>
+              <p>Practical reporting on throughput, exceptions and review outcomes — not vanity dashboards.</p>
             </li>
           </ul>
-          <div class="ai-diagram" aria-hidden="true">
-            <div class="diagram-node">Intake</div>
-            <div class="diagram-arrow"></div>
-            <div class="diagram-node">Extract / classify</div>
-            <div class="diagram-arrow"></div>
-            <div class="diagram-node accent">Human review</div>
-            <div class="diagram-arrow"></div>
-            <div class="diagram-node">Operational action</div>
-          </div>
+
+          <figure class="pipeline" data-reveal>
+            <p class="pipeline-title">Review pipeline</p>
+            <svg viewBox="0 0 260 268" role="img" aria-labelledby="pipe-title pipe-desc" width="260" height="268" style="width:100%;height:auto">
+              <title id="pipe-title">How work moves through an MK313 AI pipeline</title>
+              <desc id="pipe-desc">Intake flows to automated extraction and classification, then to human review, which is the step that authorises the operational action.</desc>
+              <defs>
+                <marker id="ar" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+                  <path d="M0 1 L5 4 L0 7" fill="none" stroke="#5b6462" stroke-width="1.2" />
+                </marker>
+              </defs>
+              <g font-family="JetBrains Mono, ui-monospace, monospace" font-size="11">
+                <rect x="12" y="8" width="236" height="46" rx="3" fill="#171b1c" stroke="#2a3130" />
+                <text x="30" y="36" fill="#f4f3f0">Intake</text>
+                <text x="236" y="36" fill="#5b6462" text-anchor="end" font-size="9">01</text>
+
+                <line x1="130" y1="54" x2="130" y2="78" stroke="#2a3130" stroke-width="1.2" marker-end="url(#ar)" />
+
+                <rect x="12" y="82" width="236" height="46" rx="3" fill="#171b1c" stroke="#2a3130" />
+                <text x="30" y="110" fill="#f4f3f0">Extract / classify</text>
+                <text x="236" y="110" fill="#5b6462" text-anchor="end" font-size="9">02</text>
+
+                <line x1="130" y1="128" x2="130" y2="152" stroke="#2a3130" stroke-width="1.2" marker-end="url(#ar)" />
+
+                <rect x="12" y="156" width="236" height="46" rx="3" fill="#12211c" stroke="#6fd7ac" stroke-width="1.4" />
+                <text x="30" y="184" fill="#6fd7ac">Human review</text>
+                <text x="236" y="184" fill="#6fd7ac" text-anchor="end" font-size="9">03</text>
+
+                <line x1="130" y1="202" x2="130" y2="226" stroke="#2a3130" stroke-width="1.2" marker-end="url(#ar)" />
+
+                <rect x="12" y="230" width="236" height="46" rx="3" fill="#171b1c" stroke="#2a3130" />
+                <text x="30" y="258" fill="#f4f3f0">Operational action</text>
+                <text x="236" y="258" fill="#5b6462" text-anchor="end" font-size="9">04</text>
+              </g>
+            </svg>
+            <figcaption class="pipeline-note">
+              Automation narrows the work. It does not authorise it — step 03 is a person.
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <section id="operations" class="operations" aria-labelledby="operations-heading">
-      <div class="container">
-        <h2 id="operations-heading" class="section-title">Operational experience</h2>
-        <p class="lead section-lead">We also operate StayConnect guest housing and MK Kitchen food service. Running these businesses creates first-hand understanding of guest, staffing, delivery, food, and reporting workflows — context that shapes how we design software.</p>
-        <div class="ops-grid">
+    <!-- Operations ------------------------------------------------------- -->
+    <section class="section" id="operations" aria-labelledby="ops-h">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Operational grounding</p>
+          <h2 class="display" id="ops-h">We run operations, not just software for them.</h2>
+          <p class="lede">
+            MK313 also operates StayConnect guest housing and MK Kitchen food service. Running them
+            gives us first-hand understanding of guest, staffing, delivery, food and reporting
+            workflows — context that shapes how we design software.
+          </p>
+        </div>
+        <div class="ops-grid" data-reveal>
           <article class="ops-card">
             <h3>StayConnect</h3>
-            <p>Serviced guest housing in Islamabad with private rooms and kitchen access for short and extended stays.</p>
-            <a href="https://www.booking.com/hotel/pk/stayconnect-islamabad.html" target="_blank" rel="noopener noreferrer">StayConnect on Booking.com</a>
-            <a href="mailto:stay@mk313.com" class="text-link">Email stay@mk313.com</a>
+            <p>Serviced guest housing in Islamabad with private rooms and kitchen access, for short and extended stays.</p>
+            <div class="links">
+              <a class="tlink" href="https://www.booking.com/hotel/pk/stayconnect-islamabad.html" target="_blank" rel="noopener noreferrer">
+                Booking.com <span class="arrow" aria-hidden="true">&#8599;</span>
+              </a>
+              <a class="tlink" href="mailto:stay@mk313.com">stay@mk313.com</a>
+            </div>
           </article>
           <article class="ops-card">
             <h3>MK Kitchen</h3>
             <p>Chef-crafted meals prepared daily and available for delivery across Islamabad.</p>
-            <a href="https://www.foodpanda.pk/restaurant/s57y/mk-kitchen-s57y" target="_blank" rel="noopener noreferrer">Order on Foodpanda</a>
+            <div class="links">
+              <a class="tlink" href="https://www.foodpanda.pk/restaurant/s57y/mk-kitchen-s57y" target="_blank" rel="noopener noreferrer">
+                Foodpanda <span class="arrow" aria-hidden="true">&#8599;</span>
+              </a>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="about" class="about-preview" aria-labelledby="about-heading">
-      <div class="container two-col">
-        <div>
-          <h2 id="about-heading">About MK313</h2>
-          <p>MK313 is based in Islamabad. Founded by Ali Jamal, we build operational software and applied AI systems, and we operate hospitality and food businesses that keep us close to real workflow constraints.</p>
-          <p>Our focus is practical delivery: systems people can run, review, and improve — not slideware.</p>
-          <ul class="inline-bullets">
-            <li>Primary identity: software engineering and applied AI</li>
-            <li>Supporting experience: guest housing and food operations</li>
-            <li>Approach: human-reviewed automation where it helps</li>
+    <!-- About preview ---------------------------------------------------- -->
+    <section class="section" id="about" aria-labelledby="about-h">
+      <div class="shell split">
+        <div data-reveal>
+          <p class="eyebrow">About</p>
+          <h2 class="display" id="about-h">A software practice with an operator's habits.</h2>
+          <div class="prose" style="margin-top:1.5rem">
+            <p>
+              MK313 is based in Islamabad and led by founder <strong>Ali Jamal</strong>. We build
+              operational software and applied AI systems, and we operate hospitality and food
+              businesses that keep us close to real workflow constraints.
+            </p>
+            <p>
+              Our focus is practical delivery: systems people can run, review and improve. We
+              describe what we have built and what it does — without inventing scale, clients or
+              maturity we cannot show publicly.
+            </p>
+          </div>
+          <p style="margin-top:1.75rem">
+            <a class="tlink" href="about.html">Read the full story <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          </p>
+        </div>
+        <div data-reveal>
+          <p class="pull">Software should reduce friction in operations without pretending every decision can be automated.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Careers ---------------------------------------------------------- -->
+    <section class="section section--tight" id="careers" aria-labelledby="careers-h">
+      <div class="shell split">
+        <div data-reveal>
+          <p class="eyebrow">Careers</p>
+          <h2 class="display" id="careers-h">Open roles</h2>
+        </div>
+        <div data-reveal>
+          <p class="prose">
+            Our recruitment portal lists current openings across MK313 — including roles in the
+            hospitality, food and clinical operations we run, alongside software positions. Each
+            post has a full description and an online application form.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href="https://recruitment.mk313.com/careers" target="_blank" rel="noopener noreferrer">
+              View open roles <span class="arrow" aria-hidden="true">&#8599;</span>
+            </a>
+            <a class="btn btn--ghost" href="mailto:careers@mk313.com?subject=General%20application">Send your CV</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact ---------------------------------------------------------- -->
+    <section class="section band-dark" id="contact" aria-labelledby="contact-h">
+      <div class="shell contact-grid">
+        <div data-reveal>
+          <p class="eyebrow">Contact</p>
+          <h2 class="display" id="contact-h">Tell us what the operation actually looks like.</h2>
+          <p class="lede" style="margin-top:1.5rem">
+            Software or applied AI projects, partnerships, and operational collaboration. The more
+            concrete the workflow, the more useful our first reply will be.
+          </p>
+
+          <ul class="channels" style="margin-top:2.5rem">
+            <li><a class="channel" href="mailto:info@mk313.com">
+              <span class="channel-label">Email</span>
+              <span class="channel-value">info@mk313.com</span>
+            </a></li>
+            <li><a class="channel" href="https://wa.me/923315907960" target="_blank" rel="noopener noreferrer">
+              <span class="channel-label">WhatsApp</span>
+              <span class="channel-value">+92 331 5907960 &#8599;</span>
+            </a></li>
+            <li><a class="channel" href="tel:+923315907960">
+              <span class="channel-label">Phone</span>
+              <span class="channel-value">+92 331 5907960</span>
+            </a></li>
+            <li><a class="channel" href="tel:+923169218003">
+              <span class="channel-label">Phone</span>
+              <span class="channel-value">+92 316 9218003</span>
+            </a></li>
           </ul>
-          <a href="about.html" class="text-link">Read the full story →</a>
         </div>
-        <div class="about-accent" aria-label="Focus areas">
-          <div class="stat-block">
-            <strong>Software &amp; AI</strong>
-            <span>Primary practice</span>
-          </div>
-          <div class="stat-block">
-            <strong>Operations</strong>
-            <span>Guest &amp; food experience</span>
-          </div>
-          <div class="stat-block">
-            <strong>Islamabad</strong>
-            <span>Based and building here</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="careers" class="careers-preview" aria-labelledby="careers-heading">
-      <div class="container">
-        <h2 id="careers-heading">Careers</h2>
-        <p>Open roles are listed on our recruitment portal, with full descriptions and an online application form for each post.</p>
-        <p class="lead">No matching opening? Send your CV to <a href="mailto:careers@mk313.com">careers@mk313.com</a>.</p>
-        <div class="hero-cta">
-          <a href="https://recruitment.mk313.com/careers" class="btn primary">View open roles</a>
-          <a href="mailto:careers@mk313.com?subject=General%20application" class="btn outline dark">Send your CV</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact-cta" aria-labelledby="contact-heading">
-      <div class="container">
-        <h2 id="contact-heading">Contact</h2>
-        <p>Discuss a software or AI project, partnership, or operational collaboration.</p>
-        <p class="support-lines">
-          Call:
-          <a href="tel:+923315907960">+92 331 5907960</a>
-          /
-          <a href="tel:+923169218003">+92 316 9218003</a>
-        </p>
-        <a href="mailto:info@mk313.com" class="btn outline">Email info@mk313.com</a>
+        <aside class="contact-aside" data-reveal>
+          <h3>Useful to include</h3>
+          <ul>
+            <li>The workflow you want to change, and who runs it today</li>
+            <li>Where records or handovers currently break</li>
+            <li>Systems it would need to talk to</li>
+            <li>Whether it has to work offline or on poor connectivity</li>
+            <li>Any timeline or constraint we should design around</li>
+          </ul>
+        </aside>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <a href="#home" class="logo" aria-label="MK313 home">
-          <img src="images/logo/logo.jpg" alt="MK313 logo" loading="lazy">
-        </a>
-        <p class="footer-tagline">Production software and applied AI for real operations — from Islamabad.</p>
+    <div class="shell">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="brand-name">MK313</span>
+          <p>Production software and applied AI for real operations. Islamabad, Pakistan.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Studio</h2>
+          <ul>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#capabilities">Capabilities</a></li>
+            <li><a href="#ai">Applied AI</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Systems</h2>
+          <ul>
+            <li><a href="https://recruitment.mk313.com" target="_blank" rel="noopener noreferrer">Recruitment</a></li>
+            <li><a href="https://pakistancurrency.mk313.com" target="_blank" rel="noopener noreferrer">Currency Exchange</a></li>
+            <li><a href="https://invoices.mk313.com" target="_blank" rel="noopener noreferrer">Digital Invoices</a></li>
+            <li><a href="https://lasortie.mk313.com" target="_blank" rel="noopener noreferrer">La Sortie</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Contact</h2>
+          <ul>
+            <li><a href="mailto:info@mk313.com">info@mk313.com</a></li>
+            <li><a href="https://wa.me/923315907960" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            <li><a href="https://recruitment.mk313.com/careers" target="_blank" rel="noopener noreferrer">Careers</a></li>
+            <li><a href="mailto:stay@mk313.com">stay@mk313.com</a></li>
+          </ul>
+        </div>
       </div>
-      <nav aria-label="Footer Navigation">
-        <ul class="footer-nav">
-          <li><a href="#work">Work</a></li>
-          <li><a href="#capabilities">Capabilities</a></li>
-          <li><a href="#ai-systems">AI Systems</a></li>
-          <li><a href="#operations">Operations</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="https://recruitment.mk313.com/careers">Careers</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="footer-meta">
-        <small>&copy; <span id="year"></span> MK313. All rights reserved.</small>
+      <div class="footer-base">
+        <p>&copy; <span id="year">2026</span> MK313. All rights reserved.</p>
+        <p>Built in Islamabad.</p>
       </div>
     </div>
   </footer>
+
   <script src="js/main.js"></script>
 </body>
 </html>

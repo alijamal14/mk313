@@ -1,13 +1,15 @@
 {
-  "name": "MK313",
+  "name": "MK313 — Production Software & Applied AI",
   "short_name": "MK313",
-  "description": "MK313 builds production software and applied AI for real operations from Islamabad.",
+  "description": "MK313 builds production operational software and applied AI from Islamabad.",
   "id": "/",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#071a33",
-  "theme_color": "#0a6cff",
+  "background_color": "#fbfaf8",
+  "theme_color": "#fbfaf8",
   "orientation": "any",
+  "lang": "en",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -22,37 +24,27 @@
       "purpose": "any maskable"
     },
     {
-      "src": "/pwa-splash-1024x1024.png",
-      "sizes": "1024x1024",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
       "src": "/apple-touch-icon.png",
       "sizes": "180x180",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "shortcuts": [
     {
-      "name": "Selected Work",
+      "name": "Selected work",
       "url": "/#work",
-      "description": "View MK313 operational software systems"
+      "description": "Systems MK313 has in daily operational use"
     },
     {
-      "name": "Capabilities",
-      "url": "/#capabilities",
-      "description": "Explore MK313 software capabilities"
-    },
-    {
-      "name": "AI Systems",
-      "url": "/#ai-systems",
-      "description": "Learn about applied AI with human review"
+      "name": "Applied AI",
+      "url": "/#ai",
+      "description": "Human-reviewed AI intake, extraction and workflow support"
     },
     {
       "name": "Contact",
       "url": "/#contact",
-      "description": "Contact MK313"
+      "description": "Start a project with MK313"
     }
   ]
 }
