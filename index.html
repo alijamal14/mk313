@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=2" />
+  <link rel="stylesheet" href="css/styles.css?v=3" />
   <script>document.documentElement.classList.add('js');</script>
 
   <script type="application/ld+json">
@@ -517,16 +517,42 @@
           </ul>
         </div>
 
-        <aside class="contact-aside" data-reveal>
-          <h3>Useful to include</h3>
-          <ul>
-            <li>The workflow you want to change, and who runs it today</li>
-            <li>Where records or handovers currently break</li>
-            <li>Systems it would need to talk to</li>
-            <li>Whether it has to work offline or on poor connectivity</li>
-            <li>Any timeline or constraint we should design around</li>
-          </ul>
-        </aside>
+        <div class="contact-form-wrap" data-reveal>
+          <form class="contact-form" id="contact-form" novalidate>
+            <h3 class="form-title">Send a brief</h3>
+
+            <div class="field">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" autocomplete="name" required maxlength="120" />
+              <p class="field-error" data-error-for="name" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" autocomplete="email" required maxlength="200" />
+              <p class="field-error" data-error-for="email" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <label for="cf-message">What are you trying to change?</label>
+              <textarea id="cf-message" name="message" rows="5" required maxlength="4000" aria-describedby="cf-message-hint"></textarea>
+              <p class="field-hint" id="cf-message-hint">
+                The workflow and who runs it today, where records break, systems it must talk to,
+                whether it needs to work offline, and any timeline.
+              </p>
+              <p class="field-error" data-error-for="message" aria-live="polite"></p>
+            </div>
+
+            <!-- Honeypot: hidden from people, tempting to bots. -->
+            <div class="hp" aria-hidden="true">
+              <label for="cf-company">Company</label>
+              <input type="text" id="cf-company" name="company" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <button class="btn btn--primary" type="submit">Send brief</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </section>
   </main>
@@ -574,6 +600,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=2"></script>
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>

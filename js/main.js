@@ -72,6 +72,101 @@
     else if (wide.addListener) wide.addListener(onWide);
   }
 
+  /* --- Contact form ------------------------------------------------------- */
+  var form = document.getElementById('contact-form');
+  if (form) {
+    var status = form.querySelector('.form-status');
+    var submit = form.querySelector('button[type="submit"]');
+    var openedAt = Date.now();
+
+    function setError(field, msg) {
+      var wrap = form.querySelector('#cf-' + field);
+      var slot = form.querySelector('[data-error-for="' + field + '"]');
+      if (slot) slot.textContent = msg || '';
+      if (wrap && wrap.parentNode) {
+        if (msg) wrap.parentNode.setAttribute('data-invalid', '');
+        else wrap.parentNode.removeAttribute('data-invalid');
+        wrap.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      }
+    }
+
+    function say(msg, state) {
+      if (!status) return;
+      status.textContent = msg;
+      if (state) status.setAttribute('data-state', state);
+      else status.removeAttribute('data-state');
+    }
+
+    function validate(values) {
+      var errors = {};
+      if (!values.name) errors.name = 'Please tell us your name.';
+      if (!values.email) errors.email = 'Please add an email address.';
+      else if (!/^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(values.email)) errors.email = 'That email address does not look right.';
+      if (!values.message) errors.message = 'Please describe what you need.';
+      else if (values.message.length < 20) errors.message = 'A little more detail would help us reply usefully.';
+      return errors;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var values = {
+        name: form.querySelector('#cf-name').value.trim(),
+        email: form.querySelector('#cf-email').value.trim(),
+        message: form.querySelector('#cf-message').value.trim(),
+        company: form.querySelector('#cf-company').value.trim(),
+        elapsed: Date.now() - openedAt
+      };
+
+      ['name', 'email', 'message'].forEach(function (f) { setError(f, ''); });
+
+      var errors = validate(values);
+      var bad = Object.keys(errors);
+      if (bad.length) {
+        bad.forEach(function (f) { setError(f, errors[f]); });
+        say('Please check the highlighted fields.', 'error');
+        var firstBad = form.querySelector('#cf-' + bad[0]);
+        if (firstBad) firstBad.focus();
+        return;
+      }
+
+      submit.disabled = true;
+      say('Sending…');
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values)
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            return { ok: res.ok, status: res.status, data: data };
+          });
+        })
+        .then(function (result) {
+          if (result.ok && result.data.ok) {
+            form.reset();
+            openedAt = Date.now();
+            say('Thank you — your brief is with us. We will reply to the address you gave.', 'ok');
+            return;
+          }
+          if (result.status === 422 && result.data.errors) {
+            Object.keys(result.data.errors).forEach(function (f) { setError(f, result.data.errors[f]); });
+            say('Please check the highlighted fields.', 'error');
+            return;
+          }
+          throw new Error('unavailable');
+        })
+        .catch(function () {
+          // Never strand the visitor: point at a channel that always works.
+          say('That did not send. Please email info@mk313.com or message us on WhatsApp and we will pick it up.', 'error');
+        })
+        .then(function () {
+          submit.disabled = false;
+        });
+    });
+  }
+
   /* --- Reveal on scroll --------------------------------------------------- */
   var targets = document.querySelectorAll('[data-reveal]');
 

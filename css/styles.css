@@ -633,6 +633,75 @@ h3.display { font-size: clamp(1.35rem, 2.2vw, 1.75rem); line-height: 1.18; }
 .channel-value { font-size: 0.9688rem; color: var(--on-band); text-align: right; }
 .channel:hover .channel-value { color: var(--on-band-accent); }
 
+/* --- Contact form ---------------------------------------------------------- */
+.contact-form {
+  border: 1px solid var(--on-band-line);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  display: grid;
+  gap: 1.1rem;
+}
+.form-title {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-band-soft);
+}
+.field { display: grid; gap: 0.4rem; }
+.field label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--on-band-soft);
+}
+.field input,
+.field textarea {
+  font: inherit;
+  font-size: 0.9375rem;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 0.85rem;
+  color: var(--on-band);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--on-band-line);
+  border-radius: var(--radius);
+  transition: border-color .18s ease, background .18s ease;
+}
+.field textarea { resize: vertical; line-height: 1.55; }
+.field input:hover,
+.field textarea:hover { border-color: rgba(255, 255, 255, 0.24); }
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--on-band-accent);
+  background: rgba(255, 255, 255, 0.07);
+}
+.field input:focus-visible,
+.field textarea:focus-visible { outline: 2px solid var(--on-band-accent); outline-offset: 2px; }
+
+.field-hint { font-size: 0.8125rem; line-height: 1.45; color: var(--on-band-soft); }
+.field-error { font-size: 0.8125rem; color: #ff9f9f; min-height: 0; }
+.field[data-invalid] input,
+.field[data-invalid] textarea { border-color: #ff9f9f; }
+
+.contact-form .btn { justify-self: start; }
+.contact-form .btn[disabled] { opacity: 0.6; cursor: progress; }
+
+.form-status { font-size: 0.875rem; line-height: 1.5; color: var(--on-band-soft); }
+.form-status[data-state="ok"] { color: var(--on-band-accent); }
+.form-status[data-state="error"] { color: #ff9f9f; }
+
+/* Honeypot — removed from view without being display:none, which some bots skip. */
+.hp {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .contact-aside {
   border: 1px solid var(--on-band-line);
   border-radius: var(--radius);

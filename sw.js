@@ -4,13 +4,13 @@
 
 /* Asset URLs carry a ?v= token. Bump it in the HTML and here together so a
    stale cache from a previous release can never match the new markup. */
-const VERSION = 'mk313-v4';
+const VERSION = 'mk313-v5';
 const PRECACHE = [
   '/',
   '/index.html',
   '/about.html',
-  '/css/styles.css?v=2',
-  '/js/main.js?v=2',
+  '/css/styles.css?v=3',
+  '/js/main.js?v=3',
   '/apple-touch-icon.png',
   '/manifest.webmanifest'
 ];
