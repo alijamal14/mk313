@@ -1,7 +1,8 @@
-const CACHE_NAME = 'mk313-cache-v1';
+const CACHE_NAME = 'mk313-cache-v2';
 const PRECACHE_URLS = [
   '/',
   '/index.html',
+  '/about.html',
   '/css/styles.css',
   '/js/main.js',
   '/images/logo/logo.jpg',

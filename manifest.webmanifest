@@ -1,11 +1,11 @@
 {
   "name": "MK313",
   "short_name": "MK313",
-  "description": "MK313 blends software innovation with fresh, healthy juice and food experiences.",
+  "description": "MK313 builds production software and applied AI for real operations from Islamabad.",
   "id": "/",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a6cff",
+  "background_color": "#071a33",
   "theme_color": "#0a6cff",
   "orientation": "any",
   "icons": [
@@ -35,14 +35,24 @@
   ],
   "shortcuts": [
     {
-      "name": "Explore Products",
-      "url": "/#products",
-      "description": "View MK313 food and beverage offerings"
+      "name": "Selected Work",
+      "url": "/#work",
+      "description": "View MK313 operational software systems"
     },
     {
-      "name": "Software Services",
-      "url": "/#services",
-      "description": "Discover MK313 technology services"
+      "name": "Capabilities",
+      "url": "/#capabilities",
+      "description": "Explore MK313 software capabilities"
+    },
+    {
+      "name": "AI Systems",
+      "url": "/#ai-systems",
+      "description": "Learn about applied AI with human review"
+    },
+    {
+      "name": "Contact",
+      "url": "/#contact",
+      "description": "Contact MK313"
     }
   ]
 }
