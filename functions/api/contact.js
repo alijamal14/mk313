@@ -125,3 +125,10 @@ export async function onRequestPost({ request, env }) {
 
   return json(200, { ok: true });
 }
+
+/* Method-specific handlers take precedence over this, so it only catches
+   non-POST verbs. Without it they fall through to the static assets and a
+   GET would answer 200 with HTML. */
+export function onRequest() {
+  return json(405, { ok: false, error: 'Method not allowed.' });
+}
